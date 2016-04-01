@@ -16,6 +16,7 @@ namespace GameJam
         {
             window = new RenderWindow(new VideoMode(800, 600), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
+            MapGenerator map = new MapGenerator(500);
 
             while (window.IsOpen)
             {
