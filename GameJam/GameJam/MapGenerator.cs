@@ -39,6 +39,7 @@ namespace GameJam
             rnd = new Random();
             RandomMap();
             CreateRessources();
+            CollectRessources(50);
             CreateRiver(1);
             CreateTiles();
 
@@ -60,11 +61,11 @@ namespace GameJam
                     y = rnd.Next(0, intMap.GetLength(1));
                 }
 
-
+                int ausrichtung = rnd.Next(30, 70);
                 while (x < intMap.GetLength(0) && y < intMap.GetLength(1))
                 {
                     intMap[x, y] = 2;
-                    if (rnd.Next(2) == 0)
+                    if (ausrichtung < rnd.Next(30, 70))
                         ++x;
                     else
                         ++y;
@@ -101,7 +102,7 @@ namespace GameJam
             for (int i = x - 1; i <= x + 1; ++i)
                 for (int l = y - 1; l <= y + 1; ++l)
                 {
-                    if (i >= intMap.GetLength(0) || l >= intMap.GetLength(1) || i < 0 || l < 0)
+                    if (!InsideMap(i, l))
                         continue;
                     else if (intMap[i, l] == 0)
                     {
@@ -109,6 +110,55 @@ namespace GameJam
                         intMap[i, l] = intMap[x, y];
                     }
                 }
+        }
+
+        void CollectRessources(int radius)
+        {
+
+            for (int i = 0; i < intMap.Length; ++i)
+            {
+                int x = rnd.Next(0, intMap.GetLength(0));
+                int y = rnd.Next(0, intMap.GetLength(1));
+                if (intMap[x, y] != 0)
+                {
+                    int type = intMap[x, y];
+                    for (int l = x - radius; l <= x + radius; ++l)
+                        for (int k = y - radius; k <= y + radius; ++k)
+                        {
+                            if (!InsideMap(l, k))
+                                continue;
+                            if (intMap[l, k] == type)
+                            {
+                                int sx = l, sy = k;
+                                int itt = 0;
+                                while (intMap[sx, sy] != 0 && itt < 5)
+                                {
+                                    ++itt;
+                                    for (int t = x - itt; t <= x + itt; ++t)
+                                        for (int s = y - itt; s <= y + itt; ++s)
+                                        {
+                                            if (!InsideMap(t, s))
+                                                continue;
+                                            if (intMap[t, s] == 0 && intMap[sx, sy] != 0)
+                                            {
+                                                intMap[t, s] = type;
+                                                intMap[sx, sy] = 0;
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                }
+            }
+
+        }
+
+        bool InsideMap(int x, int y)
+        {
+            if (x >= intMap.GetLength(0) || y >= intMap.GetLength(1) || x < 0 || y < 0)
+                return false;
+            else
+                return true;
         }
 
         void CreateTiles()
