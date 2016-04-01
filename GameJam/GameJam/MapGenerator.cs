@@ -12,7 +12,7 @@ namespace GameJam
 {
     class MapGenerator
     {
-        int tilesize = 4;
+        int tilesize = 8;
         bool[,] boolMap;
         int[,] intMap;
         Tile[,] tileMap;
@@ -39,7 +39,7 @@ namespace GameJam
             rnd = new Random();
             RandomMap();
             CreateRessources();
-            CollectRessources(50);
+            CollectRessources(20);
             CreateRiver(1);
             CreateTiles();
 

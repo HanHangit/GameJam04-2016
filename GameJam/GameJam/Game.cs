@@ -22,12 +22,12 @@ namespace GameJam
             window = new RenderWindow(new VideoMode(800, 600), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
 
-            MapGenerator map = new MapGenerator(200,150);
+            map = new MapGenerator(100, 75);
             gameTime = new GameTime();
 
             while (window.IsOpen)
             {
-                window.Clear(Color.Blue);
+                window.Clear();
                 UpdateAll();
                 DrawAll();
 
@@ -44,7 +44,7 @@ namespace GameJam
 
         void DrawAll()
         {
-			map.DrawMap(window);
+            map.DrawMap(window);
             hud.DrawHud(window);
         }
     }
