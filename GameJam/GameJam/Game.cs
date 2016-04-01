@@ -13,6 +13,7 @@ namespace GameJam
     {
         RenderWindow window;
         Hud hud;
+        GameTime gameTime;
 
         public Game()
         {
@@ -20,15 +21,29 @@ namespace GameJam
             window = new RenderWindow(new VideoMode(800, 600), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
             MapGenerator map = new MapGenerator(500);
+            gameTime = new GameTime();
 
             while (window.IsOpen)
             {
                 window.Clear(Color.Blue);
-                hud.DrawHud(window);
+
+                UpdateAll();
+                DrawAll();
 
                 window.Display();
                 window.DispatchEvents();
             }
+        }
+
+        void UpdateAll()
+        {
+            gameTime.Update();
+            hud.Update(window, gameTime);
+        }
+
+        void DrawAll()
+        {
+            hud.DrawHud(window);
         }
     }
 }
