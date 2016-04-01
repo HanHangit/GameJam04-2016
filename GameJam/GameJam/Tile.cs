@@ -8,5 +8,6 @@ namespace GameJam
 {
     class Tile
     {
+        bool begehebar;
     }
 }
