@@ -24,8 +24,8 @@ namespace GameJam
             while (window.IsOpen)
             {
                 window.Clear(Color.Blue);
+                map.DrawMap(window);
                 hud.DrawHud(window);
-				map.DrawMap(window);
                 window.Display();
                 window.DispatchEvents();
             }
