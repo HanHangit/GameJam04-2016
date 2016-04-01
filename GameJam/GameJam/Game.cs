@@ -16,12 +16,12 @@ namespace GameJam
         {
             window = new RenderWindow(new VideoMode(800, 600), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
-            MapGenerator map = new MapGenerator(500);
+            MapGenerator map = new MapGenerator(200,150);
 
             while (window.IsOpen)
             {
                 window.Clear(Color.Blue);
-
+                map.DrawMap(window);
                 window.Display();
                 window.DispatchEvents();
             }
