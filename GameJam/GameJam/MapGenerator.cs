@@ -104,14 +104,6 @@ namespace GameJam
 
         }
 
-        bool CheckMapType(int x, int y, int type, int size)
-        {
-            for (int i = x - size; i < x + size; ++i)
-                for (int l = y - size; l < y + size; ++l)
-                    return true;
-            return true;
-        }
-
         void CreateRessourceField(int x, int y)
         {
             for (int i = x - 1; i <= x + 1; ++i)
