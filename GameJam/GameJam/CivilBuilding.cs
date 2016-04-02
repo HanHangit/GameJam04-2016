@@ -15,7 +15,7 @@ namespace GameJam
         public List<Ressource> ressources;
         public List<Produkte> produkte;
         public int maxBewohner { get; set; }
-        public int currentBewohner { get; set; }
+        public float currentBewohner { get; set; }
         public float auslastung { get; set; }
         public string name;
         public abstract override string ToString();

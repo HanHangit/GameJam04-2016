@@ -9,6 +9,9 @@ namespace GameJam
 {
     class WohnHaus : CivilBuilding
     {
+        float zufriedenHeit;
+        float wachstum;
+
         public WohnHaus(List<Ressource> _ressources, List<Produkte> _produkte)
         {
             ressources = _ressources;
@@ -18,6 +21,7 @@ namespace GameJam
             currentBewohner = 0;
             auslastung = 0f;
             name = "WohnHaus";
+            zufriedenHeit = 1; // Wert von -10 bis 10 z.B.
         }
 
         public override string ToString()
@@ -27,7 +31,15 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
-            auslastung = (float)maxBewohner / (float)currentBewohner;
+            wachstum = zufriedenHeit * gTime.Ellapsed.Milliseconds / 100;
+            Console.WriteLine(wachstum);
+            currentBewohner += wachstum;
+            auslastung = (float)currentBewohner / (float)maxBewohner;
+            if(auslastung >= 1)
+            {
+                auslastung = 1;
+                currentBewohner = maxBewohner;
+            }
         }
     }
 }

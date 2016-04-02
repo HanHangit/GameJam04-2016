@@ -19,6 +19,7 @@ namespace GameJam
         List<Ressource> ressources;
         List<Produkte> produkte;
         List<Building> buildings;
+        List<CivilBuilding> civilBuildings;
 
         public Rathaus(int _gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
         {
@@ -27,6 +28,11 @@ namespace GameJam
             arbeitBev = gesamtBev / 2;
             bevWachs = 0.001;
             buildings = new List<Building>();
+            civilBuildings = new List<CivilBuilding>();
+            WohnHaus firstWohnHaus = new WohnHaus(ressources, produkte);
+            firstWohnHaus.currentBewohner = 20;
+            civilBuildings.Add(firstWohnHaus);
+
 
             ressources = _ressources;
             produkte = _produkte;
@@ -35,16 +41,15 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
-            // bevWachs muss von Bevölkerung selber und Zufriedenheut abhängig sein;
-
-
-            //int foodPerPerson = 
-            
-            realGesamtBev += bevWachs * gTime.Ellapsed.Milliseconds; 
-            gesamtBev = (int) realGesamtBev;
+            gesamtBev = 0;
+            foreach (CivilBuilding c in civilBuildings)
+            {
+                c.Update(gTime);
+                gesamtBev += (int)c.currentBewohner;
+            }
         }
 
-        public void Draw(RenderWindow window)
+        public void Draw(RenderWindow windowc)
         {
             
         }
