@@ -11,17 +11,15 @@ namespace GameJam
 {
     class Ressource
     {
-        string name;
+        public string name { get; private set; }
         float amount;
         static Random rnd = new Random();
 
         public Ressource(int type)
-        { 
+        {
             name = MapSettings.ressourcesName[type];
             amount = rnd.Next(100, 500);
         }
-
-        public string GetName() { return name; }
 
         public override string ToString()
         {

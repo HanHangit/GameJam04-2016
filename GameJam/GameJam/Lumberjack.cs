@@ -19,6 +19,7 @@ namespace GameJam
         public Lumberjack(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
         {
             production = new List<string>();
+            refRessources = new List<Ressource>();
             production.Add("Wood");
             refRessources = _refRessources;
             abbaugeschwindigkeit = 1;
@@ -39,12 +40,12 @@ namespace GameJam
 
             for(int i = 0; i < production.Count;++i)
             {
-                Ressource foundRes = refRessources.Find(item => item.GetName().Equals(production[i]));
+                Ressource foundRes = refRessources.Find(item => item.name.Equals(production[i]));
                 if(foundRes != null)
                 {
                     Console.WriteLine("hallo");
                     float menge = foundRes.Holen(abbaugeschwindigkeit * gTime.Ellapsed.Milliseconds);
-                    ressources.Find(item => item.GetName().Equals(production[i])).Add(menge);
+                    ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                     
                 }
             }

@@ -61,7 +61,7 @@ namespace GameJam
         {
             InitializeResPro();
             rathaus = new Rathaus(newBev,ressources,produkte);
-            lager = new Lager(realPosition, 25, gesamtBev, ressources, produkte);
+            lager = new Lager(realPosition, 20, gesamtBev, ressources, produkte);
         }
 
         void InitializeResPro()
