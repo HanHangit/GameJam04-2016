@@ -13,7 +13,7 @@ namespace GameJam
     class Settlement
     {
         // Overall Variables
-        Vector2i realPosition; // realPosition = centered on the Sprite
+        public Vector2i realPosition { get; private set; } // realPosition = centered on the Sprite
         Sprite sprite;
         Rathaus rathaus;
         Lager lager;
