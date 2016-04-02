@@ -25,7 +25,7 @@ namespace GameJam
             gesamtBev = _gesamtBev;
             realGesamtBev = gesamtBev;
             arbeitBev = gesamtBev / 2;
-            bevWachs = 0.000001;
+            bevWachs = 0.001;
             buildings = new List<Building>();
 
             ressources = _ressources;

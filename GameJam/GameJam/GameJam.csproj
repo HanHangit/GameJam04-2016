@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Bauernhof.cs" />
     <Compile Include="Building.cs" />
+    <Compile Include="CivilBuilding.cs" />
     <Compile Include="Economy.cs" />
     <Compile Include="ErzMine.cs" />
     <Compile Include="Fischer.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Ressource.cs" />
     <Compile Include="Settlement.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="WohnHaus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
