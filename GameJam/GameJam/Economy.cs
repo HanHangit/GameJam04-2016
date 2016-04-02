@@ -17,6 +17,7 @@ namespace GameJam
         public Economy()
         {
             settleList = new List<Settlement>();
+            settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), new Vector2i(500,500), 20));
         }
 
         public void Update(RenderWindow window, GameTime gTime)

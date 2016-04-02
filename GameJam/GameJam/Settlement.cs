@@ -66,6 +66,8 @@ namespace GameJam
 
         void InitializeResPro()
         {
+            ressources = new List<Ressource>();
+            produkte = new List<Produkte>();
             for (int i = 0; i < MapSettings.ressourcesName.Length; ++i)
                 ressources.Add(new Ressource(i));
             for (int i = 0; i < ProduktSettings.produktName.Length; ++i)
@@ -74,10 +76,12 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
-
+            lager.Update(gTime);
             rathaus.Update(gTime);
             gesamtBev = rathaus.getGesamtBev();
             gesamtBev = rathaus.getArbeitBev();
+            if (Keyboard.IsKeyPressed(Keyboard.Key.B))
+                Console.WriteLine(ressources[3].ToString());
         }
 
         public void Draw(RenderWindow window)

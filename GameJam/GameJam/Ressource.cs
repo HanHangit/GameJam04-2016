@@ -28,7 +28,7 @@ namespace GameJam
             return name + ": " + amount;
         }
 
-        public float Abbauen(float menge)
+        public float Holen(float menge)
         {
             if (menge < amount)
             {
@@ -39,6 +39,11 @@ namespace GameJam
                 return amount;
             else
                 return 0;
+        }
+
+        public void Add(float menge)
+        {
+            amount += menge;
         }
     }
 }
