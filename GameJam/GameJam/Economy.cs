@@ -27,14 +27,39 @@ namespace GameJam
 
             if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
-                settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition, 20));
-
+                if (noCityInRadius(mousePosition))
+                {
+                    settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition, 20));
+                }
+                else
+                {
+                    Console.WriteLine("U cannot build there!");
+                }
             }
 
             foreach (Settlement city in settleList)
                 city.Update(gTime);
         }
-        
+
+        bool noCityInRadius(Vector2i mouseposition)
+        {
+            Settlement fakeCity = new Settlement(mouseposition, 5);
+            double minimalDistance = 128;
+            double currentDistance;
+            Vector2i distanceVector;
+            foreach (Settlement city in settleList)
+            {
+                
+                distanceVector = fakeCity.realPosition - city.realPosition;
+                currentDistance = Math.Sqrt(distanceVector.X * distanceVector.X + distanceVector.Y * distanceVector.Y);
+                if (currentDistance < minimalDistance)
+                {
+                    return false;
+                }
+            } 
+            return true;
+        }
+
         public void Draw(RenderWindow window)
         {
             foreach (Settlement city in settleList)
