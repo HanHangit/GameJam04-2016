@@ -26,7 +26,7 @@ namespace GameJam
             }
             neededRessources[0].Add("Kohle");
             amountRessources[0].Add(0.003f);
-            neededRessources[0].Add("Eisen");
+            neededRessources[0].Add("Eisenerz");
             amountRessources[0].Add(0.002f);
             production.Add("Eisen");
             produktionsGeschwindigkeit = 0.001f;
@@ -55,16 +55,15 @@ namespace GameJam
             {
                 bool enoughRessources = true;
                 List<float> checkRessource = new List<float>();
-                for(int l = 0; l < neededRessources.Length; ++l)
+                for(int l = 0; l < neededRessources[i].Count; ++l)
                 {
-                    Produkte checkAmountRessource = produkte.Find(item => item.name.Equals(neededRessources[i][l]));
+                    Ressource checkAmountRessource = ressources.Find(item => item.name.Equals(neededRessources[i][l]));
                     if (checkAmountRessource != null)
                     {
                         float menge = checkAmountRessource.Holen(amountRessources[i][l]);
                         if (menge == 0)
                         {
                             enoughRessources = false;
-
                         }
                         else
                         {
@@ -76,13 +75,13 @@ namespace GameJam
                 }
                 if (enoughRessources)
                 {
-                    ressources.Find(item => item.name.Equals(production[i])).Add(auslastung * produktionsGeschwindigkeit * gTime.Ellapsed.Milliseconds);
+                    produkte.Find(item => item.name.Equals(production[i])).Add(auslastung * produktionsGeschwindigkeit * gTime.Ellapsed.Milliseconds);
                 }
                 else
                 {
                     for (int l = 0; l < checkRessource.Count; ++l)
                     {
-                        Produkte checkAmountRessource = produkte.Find(item => item.name.Equals(neededRessources[i][l]));
+                        Ressource checkAmountRessource = ressources.Find(item => item.name.Equals(neededRessources[i][l]));
                         if (checkAmountRessource != null)
                         {
                             checkAmountRessource.Add(checkRessource[l]);
