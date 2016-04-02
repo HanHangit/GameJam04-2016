@@ -11,6 +11,8 @@ namespace GameJam
 {
     class MapSettings
     {
+        public static int tilesize = 4;
+
         public static Color[] typeColor =
         {
            new Color(182,140,100),  //Kahles Land

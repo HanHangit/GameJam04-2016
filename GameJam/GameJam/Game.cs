@@ -19,19 +19,30 @@ namespace GameJam
         public Game()
         {
             hud = new Hud();
-            window = new RenderWindow(new VideoMode(800, 600), "GameJam");
+            window = new RenderWindow(new VideoMode(1800, 1000), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
 
-            map = new MapGenerator(100, 75);
+            int tilesize = MapSettings.tilesize;
+            map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
             gameTime = new GameTime();
+
+            //Draw TImer Update
+            float fixedDrawTime = 0;
+            float currentDrawTimer = 0;
 
             while (window.IsOpen)
             {
-                window.Clear();
-                UpdateAll();
-                DrawAll();
 
-                window.Display();
+                UpdateAll();
+                if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+                    map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
+
+
+                currentDrawTimer += gameTime.Ellapsed.Milliseconds;
+                    currentDrawTimer = 0;
+                    DrawAll();
+
+                Console.WriteLine(1000f / gameTime.Ellapsed.Milliseconds);
                 window.DispatchEvents();
             }
         }
@@ -44,8 +55,10 @@ namespace GameJam
 
         void DrawAll()
         {
+            window.Clear();
             map.DrawMap(window);
             hud.DrawHud(window);
+            window.Display();
         }
     }
 }

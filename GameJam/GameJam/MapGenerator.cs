@@ -12,14 +12,19 @@ namespace GameJam
 {
     class MapGenerator
     {
-        int tilesize = 8;
+        int tilesize = MapSettings.tilesize;
         bool[,] boolMap;
         int[,] intMap;
         Tile[,] tileMap;
         Random rnd;
+        Texture mapTexture;
+        Sprite mapSprite;
+
+
 
         public MapGenerator(int size)
         {
+
             tileMap = new Tile[size, size];
             intMap = new int[size, size];
             boolMap = new bool[size, size];
@@ -38,10 +43,11 @@ namespace GameJam
         {
             rnd = new Random();
             RandomMap();
-            CreateRessources();
-            CollectRessources(20);
+            CreateRessources(5);
+            CollectRessources(10);
             CreateRiver(1);
             CreateTiles();
+            UpdateMap();
 
         }
 
@@ -84,7 +90,7 @@ namespace GameJam
                 }
         }
 
-        void CreateRessources()
+        void CreateRessources(int abstand)
         {
             for (int i = 1; i < MapSettings.ressourcesWahrscheinlichkeit.Length; ++i)
                 for (int l = 0; l < MapSettings.ressourcesWahrscheinlichkeit[i]; ++l)
@@ -95,6 +101,14 @@ namespace GameJam
                     CreateRessourceField(x, y);
                 }
 
+        }
+
+        bool CheckMapType(int x, int y, int type, int size)
+        {
+            for (int i = x - size; i < x + size; ++i)
+                for (int l = y - size; l < y + size; ++l)
+                    return true;
+            return true;
         }
 
         void CreateRessourceField(int x, int y)
@@ -168,12 +182,28 @@ namespace GameJam
                 {
                     tileMap[i, l] = new Tile(new Vector2f(i, l), intMap[i, l], tilesize);
                 }
+
+
+        }
+
+        void UpdateMap()
+        {
+            Color[,] mapColor = new Color[intMap.GetLength(0), intMap.GetLength(1)];
+            for (int i = 0; i < intMap.GetLength(0); ++i)
+                for (int l = 0; l < intMap.GetLength(1); ++l)
+                {
+                    mapColor[i, l] = tileMap[i, l].tileColor;
+                }
+
+            Image mapImage = new Image(mapColor);
+            mapTexture = new Texture(mapImage, new IntRect(0, 0, intMap.GetLength(0) * MapSettings.tilesize, intMap.GetLength(1) * MapSettings.tilesize));
+            mapSprite = new Sprite(mapTexture);
+            mapSprite.Scale = new Vector2f(MapSettings.tilesize, MapSettings.tilesize);
         }
 
         public void DrawMap(RenderWindow window)
         {
-            foreach (Tile t in tileMap)
-                t.Draw(window);
+            window.Draw(mapSprite);
         }
     }
 }
