@@ -31,23 +31,23 @@ namespace GameJam
             buildings = new List<Building>();
             CollectRessourceRef();
             buildings.Add(new Lumberjack(ressources, produkte, ressourceRef));
+            buildings.Add(new Bauernhof(ressources, produkte, ressourceRef));
         }
 
         void CollectRessourceRef()
         {
             int x = (int)position.X / MapSettings.tilesize;
             int y = (int)position.Y / MapSettings.tilesize;
-            for(int i = x- radius; i < x + radius; ++i)
+            for (int i = x - radius; i < x + radius; ++i)
                 for(int l = y - radius; l < y + radius; ++l)
                 {
-                    if(Game.map.InsideMap(i,l))
+                    if (Game.map.InsideMap(i,l))
                     {
                         Tile foundTile = Game.map.tileMap[i,l];
                         Ressource foundRessource = foundTile.GetRessource();
                         if (!foundRessource.name.Equals("None"))
                         {
                             ressourceRef.Add(foundRessource);
-                            //Console.WriteLine(foundRessource.ToString());
                         }
                     }
                 }
