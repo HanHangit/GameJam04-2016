@@ -13,7 +13,7 @@ namespace GameJam
     {
         bool begehebar;
         Ressource ressource;
-        RectangleShape shape;
+       public Color tileColor { get; private set; }
 
         public Tile(Vector2f position, int type, int tilesize)
         {
@@ -21,19 +21,12 @@ namespace GameJam
             SetRessource(type);
             
             //Create Tile Shape
-            shape = new RectangleShape(new Vector2f(tilesize, tilesize));
-            shape.FillColor = MapSettings.typeColor[type];
-            shape.Position = position * tilesize;
+            tileColor = MapSettings.typeColor[type];
         }
 
         void SetRessource(int type)
         {
             ressource = new Ressource(type);
-        }
-
-        public void Draw(RenderWindow window)
-        {
-            window.Draw(shape);
         }
     }
 }

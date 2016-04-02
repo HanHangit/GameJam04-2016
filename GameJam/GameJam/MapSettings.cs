@@ -11,6 +11,8 @@ namespace GameJam
 {
     class MapSettings
     {
+        public static int tilesize = 4;
+
         public static Color[] typeColor =
         {
            new Color(182,140,100),  //Kahles Land
@@ -34,11 +36,11 @@ namespace GameJam
         public static int[] ressourcesWahrscheinlichkeit =
         {
             99999,
-            30,
-            20,
             15,
             10,
-            5
+            7,
+            5,
+            3
 
         };
     }
