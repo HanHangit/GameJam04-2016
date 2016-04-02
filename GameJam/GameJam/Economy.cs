@@ -25,7 +25,7 @@ namespace GameJam
             Vector2i mousePosition = Mouse.GetPosition(window);
             if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
-                settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition));
+                settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition, 20));
 
             }
 

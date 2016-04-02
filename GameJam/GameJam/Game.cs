@@ -11,6 +11,7 @@ namespace GameJam
 {
     class Game
     {
+
         RenderWindow window;
         Hud hud;
         GameTime gameTime;
