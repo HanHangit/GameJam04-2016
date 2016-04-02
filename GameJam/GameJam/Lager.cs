@@ -21,6 +21,9 @@ namespace GameJam
         
         public Lager(Vector2i pos, int _radius, int gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
         {
+            position = pos;
+            ressources = new List<Ressource>();
+            produkte = new List<Produkte>();
             ressources = _ressources;
             produkte = _produkte;
             radius = _radius;
@@ -42,7 +45,7 @@ namespace GameJam
                     {
                         Tile foundTile = Game.map.tileMap[i,l];
                         Ressource foundRessource = foundTile.GetRessource();
-                        if (!foundRessource.GetName().Equals("None"))
+                        if (!foundRessource.name.Equals("None"))
                         {
                             ressourceRef.Add(foundRessource);
                             Console.WriteLine(foundRessource.ToString());
