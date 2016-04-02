@@ -20,6 +20,7 @@ namespace GameJam
         List<Ressource> ressources;
         List<Produkte> produkte;
 
+        int gebäudeAnzahl;
         int gesamtBev;
         int arbeitBev;
 
@@ -78,6 +79,7 @@ namespace GameJam
         public void Update(GameTime gTime)
         {
             lager.Update(gTime);
+            gebäudeAnzahl = 30;
             rathaus.Update(gTime);
             gesamtBev = rathaus.getGesamtBev();
             gesamtBev = rathaus.getArbeitBev();
@@ -87,10 +89,25 @@ namespace GameJam
 
         public void Draw(RenderWindow window)
         {
+            Sprite background = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(gebäudeAnzahl / 10 * 2)), (uint)(sprite.TextureRect.Height + (int)(gebäudeAnzahl / 10 * 2)), Color.Magenta)));
+            background.Position = new Vector2f(realPosition.X - (int)(background.TextureRect.Width / 2), realPosition.Y - (int)(background.TextureRect.Height / 2));
+            window.Draw(background);
             window.Draw(sprite);
-            
+            lager.Draw(window);
+            rathaus.Draw(window);
         }
         
-        
+        public bool MouseHoversHere(Vector2i mousePosition)
+        {
+            Vector2i distanceVector = mousePosition - realPosition;
+            if(distanceVector.X >= -16 && distanceVector.X <=16)
+            {
+                if(distanceVector.Y >= -16 && distanceVector.Y <= 16)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

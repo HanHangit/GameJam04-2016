@@ -21,5 +21,7 @@ namespace GameJam
         public abstract void Update(GameTime gTime);
         public abstract void Draw(RenderWindow window);
 
+
+
     }
 }

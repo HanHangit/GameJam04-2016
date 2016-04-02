@@ -57,6 +57,7 @@ namespace GameJam
 
         public void DrawHud(RenderWindow window)
         {
+
             window.Draw(exampleSprite);
             foreach (HudText text in textList)
             {
