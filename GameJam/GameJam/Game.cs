@@ -15,6 +15,7 @@ namespace GameJam
         Hud hud;
         GameTime gameTime;
         MapGenerator map;
+        Economy eco;
 
         public Game()
         {
@@ -24,7 +25,8 @@ namespace GameJam
 
 			int tilesize = MapSettings.tilesize;
             map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
-                       gameTime = new GameTime();
+            gameTime = new GameTime();
+            eco = new Economy();
 
             //Draw TImer Update
             float fixedDrawTime = 0;
@@ -51,12 +53,14 @@ namespace GameJam
         {
             gameTime.Update();
             hud.Update(window, gameTime);
+            eco.Update(window);
         }
 
         void DrawAll()
         {
             window.Clear();
             map.DrawMap(window);
+            eco.Draw(window);
             hud.DrawHud(window);
             window.Display();
         }
