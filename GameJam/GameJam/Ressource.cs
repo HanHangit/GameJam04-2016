@@ -34,7 +34,11 @@ namespace GameJam
                 return menge;
             }
             else if (amount > 0)
+            {
+                amount = 0;
                 return amount;
+
+            }
             else
                 return 0;
         }

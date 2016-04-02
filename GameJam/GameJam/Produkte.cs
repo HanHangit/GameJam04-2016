@@ -20,5 +20,10 @@ namespace GameJam
             name = _name;
             cost = _cost;
         }
+
+        public override string ToString()
+        {
+            return name + ": " + amount;
+        }
     }
 }

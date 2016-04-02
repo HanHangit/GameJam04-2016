@@ -20,7 +20,7 @@ namespace GameJam
         {
             production = new List<string>();
             refRessources = new List<Ressource>();
-            production.Add("Wood");
+            production.Add("Holz");
             refRessources = _refRessources;
             abbaugeschwindigkeit = 1;
             ressources = _ressources;
@@ -43,7 +43,6 @@ namespace GameJam
                 Ressource foundRes = refRessources.Find(item => item.name.Equals(production[i]));
                 if(foundRes != null)
                 {
-                    Console.WriteLine("hallo");
                     float menge = foundRes.Holen(abbaugeschwindigkeit * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                     

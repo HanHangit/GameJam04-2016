@@ -28,6 +28,7 @@ namespace GameJam
             map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
             gameTime = new GameTime();
             eco = new Economy();
+            //window.SetFramerateLimit(60);
 
             while (window.IsOpen)
             {

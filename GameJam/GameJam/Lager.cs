@@ -63,7 +63,7 @@ namespace GameJam
         public void Update(GameTime gTime)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
-                foreach (Ressource r in ressourceRef)
+                foreach (Ressource r in ressources)
                     Console.WriteLine(r.ToString());
             foreach (Building b in buildings)
                 b.Update(gTime);
