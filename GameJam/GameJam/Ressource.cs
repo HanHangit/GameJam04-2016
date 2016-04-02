@@ -13,10 +13,10 @@ namespace GameJam
     {
         string name;
         float amount;
+        static Random rnd = new Random();
 
         public Ressource(int type)
-        {
-            Random rnd = new Random();
+        { 
             name = MapSettings.ressourcesName[type];
             amount = rnd.Next(100, 500);
         }

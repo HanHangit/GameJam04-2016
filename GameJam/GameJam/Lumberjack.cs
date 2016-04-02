@@ -42,6 +42,7 @@ namespace GameJam
                 Ressource foundRes = refRessources.Find(item => item.GetName().Equals(production[i]));
                 if(foundRes != null)
                 {
+                    Console.WriteLine("hallo");
                     float menge = foundRes.Holen(abbaugeschwindigkeit * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.GetName().Equals(production[i])).Add(menge);
                     
