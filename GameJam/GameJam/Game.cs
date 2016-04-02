@@ -22,9 +22,9 @@ namespace GameJam
             window = new RenderWindow(new VideoMode(1800, 1000), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
 
-            int tilesize = MapSettings.tilesize;
+			int tilesize = MapSettings.tilesize;
             map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
-            gameTime = new GameTime();
+                       gameTime = new GameTime();
 
             //Draw TImer Update
             float fixedDrawTime = 0;
