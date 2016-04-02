@@ -16,6 +16,7 @@ namespace GameJam
         Stopwatch watch;
         public TimeSpan TotalTime { get; private set; }
         // time ellapsed since last frame
+        // TODO: Use average of last x frames as Ellapsed
         public TimeSpan Ellapsed { get; private set; }
 
         public GameTime()
