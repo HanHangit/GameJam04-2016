@@ -55,9 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bauernhof.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="Economy.cs" />
+    <Compile Include="ErzMine.cs" />
+    <Compile Include="Fischer.cs" />
     <Compile Include="GameTime.cs" />
+    <Compile Include="GoldMine.cs" />
     <Compile Include="HudText.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Hud.cs" />

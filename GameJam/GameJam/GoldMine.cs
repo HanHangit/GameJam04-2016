@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
-using SFML.System;
-using SFML.Window;
 
 namespace GameJam
 {
-    class Lumberjack : Building
+    class GoldMine : Building
     {
         float abbaugeschwindigkeit;
         List<Ressource> refRessources;
         List<string> production;
 
-        public Lumberjack(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
+        public GoldMine(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
         {
             production = new List<string>();
             refRessources = new List<Ressource>();
-            production.Add("Holz");
+            production.Add("Gold");
             refRessources = _refRessources;
             abbaugeschwindigkeit = 0.001f;
             ressources = _ressources;
@@ -28,8 +26,12 @@ namespace GameJam
             maxWorkers = 25;
             auslastung = 0;
         }
-
         public override void Draw(RenderWindow window)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
         {
             throw new NotImplementedException();
         }
@@ -37,21 +39,15 @@ namespace GameJam
         public override void Update(GameTime gTime)
         {
             auslastung = (float)currentWorkers / (float)maxWorkers;
-            for(int i = 0; i < production.Count;++i)
+            for (int i = 0; i < production.Count; ++i)
             {
                 Ressource foundRes = refRessources.Find(item => item.name.Equals(production[i]));
-                if(foundRes != null)
+                if (foundRes != null)
                 {
                     float menge = foundRes.Holen(abbaugeschwindigkeit * auslastung * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                 }
             }
-
-        }
-
-        public override string ToString()
-        {
-            return "Lumberjack";
         }
     }
 }
