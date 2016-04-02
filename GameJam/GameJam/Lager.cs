@@ -16,10 +16,10 @@ namespace GameJam
         List<Produkte> produkte;
         List<Building> buildings;
         int radius;
-        int arbeiter;
+        public int workers { get; set; }
         Vector2i position;
         
-        public Lager(Vector2i pos, int _radius, int gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
+        public Lager(Vector2i pos, int _radius, List<Ressource> _ressources, List<Produkte> _produkte)
         {
             position = pos;
             ressources = new List<Ressource>();
@@ -27,7 +27,6 @@ namespace GameJam
             ressources = _ressources;
             produkte = _produkte;
             radius = _radius;
-            arbeiter = gesamtBev / 2;
             ressourceRef = new List<Ressource>();
             buildings = new List<Building>();
             CollectRessourceRef();
@@ -48,7 +47,7 @@ namespace GameJam
                         if (!foundRessource.name.Equals("None"))
                         {
                             ressourceRef.Add(foundRessource);
-                            Console.WriteLine(foundRessource.ToString());
+                            //Console.WriteLine(foundRessource.ToString());
                         }
                     }
                 }
@@ -62,11 +61,42 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
+            WorkerVerteilung();
+
             if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
                 foreach (Ressource r in ressources)
                     Console.WriteLine(r.ToString());
             foreach (Building b in buildings)
                 b.Update(gTime);
+        }
+
+        void WorkerVerteilung()
+        {
+            float[] workerVerteilung = new float[buildings.Count];
+            int neededWorkers = 0;
+            for (int i = 0; i < buildings.Count; i++)
+            {
+                neededWorkers += buildings[i].maxWorkers;
+                workerVerteilung[i] = buildings[i].maxWorkers;
+            }
+            if(neededWorkers <= workers)
+            {
+                for(int i = 0; i < buildings.Count; ++i)
+                {
+                    buildings[i].BindingWorker((int)workerVerteilung[i]);
+                }
+            }
+            else
+            {
+                for(int i = 0; i < buildings.Count; ++i)
+                {
+                    workerVerteilung[i] = (workerVerteilung[i] / neededWorkers) * workers;
+                    buildings[i].BindingWorker((int)workerVerteilung[i]);
+
+                }
+            }
+
+
         }
 
 
