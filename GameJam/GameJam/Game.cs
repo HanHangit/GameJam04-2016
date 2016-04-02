@@ -53,7 +53,7 @@ namespace GameJam
         {
             gameTime.Update();
             hud.Update(window, gameTime);
-            eco.Update(window);
+            eco.Update(window, gameTime);
         }
 
         void DrawAll()

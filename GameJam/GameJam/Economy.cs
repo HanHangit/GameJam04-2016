@@ -19,22 +19,25 @@ namespace GameJam
             settleList = new List<Settlement>();
         }
 
-        public void Update(RenderWindow window)
+        public void Update(RenderWindow window, GameTime gTime)
         {
+            //TODO: Stadt update
             Vector2i mousePosition = Mouse.GetPosition(window);
             if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
                 settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition));
 
             }
+
+            foreach (Settlement city in settleList)
+                city.Update(gTime);
         }
         
         public void Draw(RenderWindow window)
         {
             foreach (Settlement city in settleList)
             {
-                Console.WriteLine(city.getSprite().Position.ToString());
-                window.Draw(city.getSprite());
+                city.Draw(window);
             }
         }
     }

@@ -44,10 +44,15 @@ namespace GameJam
             sprite = _sprite;
             realPosition = new Vector2i((int)_realPosition.X, (int)_realPosition.Y);
         }
-     
-        public Sprite getSprite()
+
+        public void Update(GameTime gTime)
         {
-            return sprite;
+
+        }
+
+        public void Draw(RenderWindow window)
+        {
+            window.Draw(sprite);
         }
         
 
