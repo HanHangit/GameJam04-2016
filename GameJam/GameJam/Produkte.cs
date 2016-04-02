@@ -8,9 +8,7 @@ namespace GameJam
 {
     class Produkte
     {
-        string name;
-        Ressource[] ressources;
-        Produkte[] produkte;
+        public string name { get; private set; }
         int cost;
         float amount;
 
@@ -21,9 +19,31 @@ namespace GameJam
             cost = _cost;
         }
 
+        public float Holen(float menge)
+        {
+            if (menge < amount)
+            {
+                amount -= menge;
+                return menge;
+            }
+            else if (amount > 0)
+            {
+                amount = 0;
+                return amount;
+
+            }
+            else
+                return 0;
+        }
+
         public override string ToString()
         {
             return name + ": " + amount;
+        }
+
+        public void Add(float menge)
+        {
+            amount += menge;
         }
     }
 }

@@ -20,7 +20,8 @@ namespace GameJam
            new Color(22,154,152),   //Wasser Land
            new Color(83,54,0),      //Wald Land
            new Color(117,117,117),  //Eisen Land
-           new Color(255,220,0)     //Gold Land
+           new Color(255,220,0),     //Gold Land
+           new Color(0,0,0)
         };
 
         public static string[] ressourcesName =
@@ -30,7 +31,8 @@ namespace GameJam
             "Fische",
             "Holz",
             "Eisenerz",
-            "Gold"
+            "Gold",
+            "Kohle"
         };
 
         public static int[] ressourcesWahrscheinlichkeit =
@@ -40,7 +42,8 @@ namespace GameJam
             50,
             40,
             30,
-            10
+            10,
+            40
 
         };
     }

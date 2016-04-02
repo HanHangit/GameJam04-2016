@@ -9,18 +9,22 @@ using SFML.System;
 
 namespace GameJam
 {
-    class Lager 
+    class Lager
     {
+
         List<Ressource> ressourceRef;
         List<Ressource> ressources;
         List<Produkte> produkte;
         List<Building> buildings;
+        float kiUpdateTime;
+        float timer;
         int radius;
         public int workers { get; set; }
         Vector2i position;
-        
+
         public Lager(Vector2i pos, int _radius, List<Ressource> _ressources, List<Produkte> _produkte)
         {
+            kiUpdateTime = 20;
             position = pos;
             ressources = new List<Ressource>();
             produkte = new List<Produkte>();
@@ -30,8 +34,9 @@ namespace GameJam
             ressourceRef = new List<Ressource>();
             buildings = new List<Building>();
             CollectRessourceRef();
-            buildings.Add(new Lumberjack(ressources, produkte, ressourceRef));
-            buildings.Add(new Bauernhof(ressources, produkte, ressourceRef));
+            buildings.Add(new ErzMine(ressources, produkte, ressourceRef));
+            buildings.Add(new KohleMine(ressources, produkte, ressourceRef));
+            buildings.Add(new Hochofen(ressources, produkte, ressourceRef));
         }
 
         void CollectRessourceRef()
@@ -39,11 +44,11 @@ namespace GameJam
             int x = (int)position.X / MapSettings.tilesize;
             int y = (int)position.Y / MapSettings.tilesize;
             for (int i = x - radius; i < x + radius; ++i)
-                for(int l = y - radius; l < y + radius; ++l)
+                for (int l = y - radius; l < y + radius; ++l)
                 {
-                    if (Game.map.InsideMap(i,l))
+                    if (Game.map.InsideMap(i, l))
                     {
-                        Tile foundTile = Game.map.tileMap[i,l];
+                        Tile foundTile = Game.map.tileMap[i, l];
                         Ressource foundRessource = foundTile.GetRessource();
                         if (!foundRessource.name.Equals("None"))
                         {
@@ -61,13 +66,40 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
+            timer += gTime.Ellapsed.Milliseconds;
             WorkerVerteilung();
+            KiUpdate();
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
                 foreach (Ressource r in ressources)
                     Console.WriteLine(r.ToString());
             foreach (Building b in buildings)
                 b.Update(gTime);
+
+
+        }
+
+        void KiUpdate()
+        {
+            if (timer > kiUpdateTime)
+            {
+
+            }
+        }
+
+        Building ChooseBuilding(int index)
+        {
+            switch (index)
+            {
+                case 1: return new Lumberjack(ressources, produkte, ressourceRef);
+                case 2: return new Bauernhof(ressources, produkte, ressourceRef);
+                case 3: return new ErzMine(ressources, produkte, ressourceRef);
+                case 4: return new KohleMine(ressources, produkte, ressourceRef);
+                case 5: return new Fischer(ressources, produkte, ressourceRef);
+                case 6: return new GoldMine(ressources, produkte, ressourceRef);
+                default:
+                    return null;
+            }
         }
 
         void WorkerVerteilung()
@@ -79,16 +111,16 @@ namespace GameJam
                 neededWorkers += buildings[i].maxWorkers;
                 workerVerteilung[i] = buildings[i].maxWorkers;
             }
-            if(neededWorkers <= workers)
+            if (neededWorkers <= workers)
             {
-                for(int i = 0; i < buildings.Count; ++i)
+                for (int i = 0; i < buildings.Count; ++i)
                 {
                     buildings[i].BindingWorker((int)workerVerteilung[i]);
                 }
             }
             else
             {
-                for(int i = 0; i < buildings.Count; ++i)
+                for (int i = 0; i < buildings.Count; ++i)
                 {
                     workerVerteilung[i] = (workerVerteilung[i] / neededWorkers) * workers;
                     buildings[i].BindingWorker((int)workerVerteilung[i]);
