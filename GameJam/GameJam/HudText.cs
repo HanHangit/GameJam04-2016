@@ -49,6 +49,11 @@ namespace GameJam
             this.text.DisplayedString = newString;
         }
 
+        public void RemoveText()
+        {
+            this.text.DisplayedString = "---";
+        }
+
         public Text getText()
         {
             return text;

@@ -18,7 +18,7 @@ namespace GameJam
         double bevWachs;
         List<Ressource> ressources;
         List<Produkte> produkte;
-
+        List<Building> buildings;
 
         public Rathaus(int _gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
         {
@@ -26,8 +26,8 @@ namespace GameJam
             realGesamtBev = gesamtBev;
             arbeitBev = gesamtBev / 2;
             bevWachs = 0.000001;
+            buildings = new List<Building>();
 
-            
             ressources = _ressources;
             produkte = _produkte;
 
@@ -57,6 +57,11 @@ namespace GameJam
         public int getArbeitBev()
         {
             return arbeitBev;
+        }
+
+        public int getGebäudeAnzahl()
+        {
+            return buildings.Count();
         }
     }
 }

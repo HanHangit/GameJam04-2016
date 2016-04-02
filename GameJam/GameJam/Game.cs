@@ -44,8 +44,9 @@ namespace GameJam
         void UpdateAll()
         {
             gameTime.Update();
-            hud.Update(window, gameTime);
+            hud.Update(window, gameTime, eco.selectedCity);
             eco.Update(window, gameTime);
+            
         }
 
         void DrawAll()

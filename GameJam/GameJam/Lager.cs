@@ -99,7 +99,10 @@ namespace GameJam
 
         }
 
-
+        public int getGebäudeAnzahl()
+        {
+            return buildings.Count();
+        }
 
     }
 }

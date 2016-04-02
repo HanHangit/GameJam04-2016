@@ -13,10 +13,12 @@ namespace GameJam
     class Economy
     {
         private List<Settlement> settleList;
+        public Settlement selectedCity;
         
         public Economy()
         {
             settleList = new List<Settlement>();
+            selectedCity = null;
         }
 
         public void Update(RenderWindow window, GameTime gTime)
@@ -38,7 +40,17 @@ namespace GameJam
             }
 
             foreach (Settlement city in settleList)
+            {
                 city.Update(gTime);
+                if(city.MouseHoversHere(mousePosition) == true)
+                {
+                    selectedCity = city;
+                }
+                else
+                {
+                    selectedCity = null;
+                }
+            }
         }
 
         bool noCityInRadius(Vector2i mouseposition)
@@ -67,5 +79,7 @@ namespace GameJam
                 city.Draw(window);
             }
         }
+
+        
     }
 }

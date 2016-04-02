@@ -20,10 +20,9 @@ namespace GameJam
         List<Ressource> ressources;
         List<Produkte> produkte;
 
-        int gebäudeAnzahl;
-        int gesamtBev;
-        int arbeitBev;
-
+        public int gebäudeAnzahl {  get; private set; }
+        public int gesamtBev {  get; private set; }
+        public int arbeitBev {  get; private set; }
         // Economy Variables;
 
         public Settlement(Vector2i mousePosition, int newBev)
@@ -82,7 +81,7 @@ namespace GameJam
             arbeitBev = rathaus.getArbeitBev();
             lager.workers = arbeitBev;
             lager.Update(gTime);
-            gebäudeAnzahl = 30;
+            gebäudeAnzahl = lager.getGebäudeAnzahl() + rathaus.getGebäudeAnzahl();
             rathaus.Update(gTime);
             if (Keyboard.IsKeyPressed(Keyboard.Key.B))
                 Console.WriteLine(ressources[3].ToString());
@@ -90,7 +89,7 @@ namespace GameJam
 
         public void Draw(RenderWindow window)
         {
-            Sprite background = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(gebäudeAnzahl / 10 * 2)), (uint)(sprite.TextureRect.Height + (int)(gebäudeAnzahl / 10 * 2)), Color.Magenta)));
+            Sprite background = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(gebäudeAnzahl / 2 * 2)), (uint)(sprite.TextureRect.Height + (int)(gebäudeAnzahl / 2 * 2)), Color.Magenta)));
             background.Position = new Vector2f(realPosition.X - (int)(background.TextureRect.Width / 2), realPosition.Y - (int)(background.TextureRect.Height / 2));
             window.Draw(background);
             window.Draw(sprite);
