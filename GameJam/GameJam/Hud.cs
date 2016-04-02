@@ -40,7 +40,8 @@ namespace GameJam
             textList.Add(new HudText("stadtAusgewählt", "---", new Vector2f(0, 200)));
             textList.Add(new HudText("gesamtBev", "---", new Vector2f(0, 220)));
             textList.Add(new HudText("gebäudeAnzahl", "---", new Vector2f(0, 240)));
-            textList.Add(new HudText("bla", "---", new Vector2f(0, 260)));
+            textList.Add(new HudText("ressourcen", "---", new Vector2f(0, 260)));
+            textList.Add(new HudText("produkte", "---", new Vector2f(0, 320)));
         }
        
         public void Update(RenderWindow window, GameTime gameTime, Settlement selectedCity)
@@ -69,6 +70,8 @@ namespace GameJam
                 textList.Find(i => i.textName.Equals("stadtAusgewählt")).ChangeText("No City Selected");
                 textList.Find(i => i.textName.Equals("gesamtBev")).RemoveText();
                 textList.Find(i => i.textName.Equals("gebäudeAnzahl")).RemoveText();
+                textList.Find(i => i.textName.Equals("ressourcen")).RemoveText();
+                textList.Find(i => i.textName.Equals("produkte")).RemoveText();
                 return;
             }
             else
@@ -76,6 +79,18 @@ namespace GameJam
                 textList.Find(i => i.textName.Equals("stadtAusgewählt")).ChangeText("City Selected");
                 textList.Find(i => i.textName.Equals("gesamtBev")).ChangeText("Bevölkerung: " + selectedCity.gesamtBev);
                 textList.Find(i => i.textName.Equals("gebäudeAnzahl")).ChangeText("Gebäudeanzahl: " + selectedCity.gebäudeAnzahl);
+                String ressourceOutput = "";
+                foreach(Ressource r in selectedCity.ressources)
+                {
+                    ressourceOutput += r.ToString() + "\n"; 
+                }
+                textList.Find(i => i.textName.Equals("ressourcen")).ChangeText(ressourceOutput);
+                String produktOutput = "";
+                foreach(Produkte p in selectedCity.produkte)
+                {
+                    ressourceOutput += p.ToString() + "\n";
+                }
+                textList.Find(i => i.textName.Equals("produkte")).ChangeText(produktOutput);
             }
         }
 

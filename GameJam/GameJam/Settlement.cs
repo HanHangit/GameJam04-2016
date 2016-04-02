@@ -17,8 +17,8 @@ namespace GameJam
         Sprite sprite;
         Rathaus rathaus;
         Lager lager;
-        List<Ressource> ressources;
-        List<Produkte> produkte;
+        public List<Ressource> ressources { get; private set; }
+        public List<Produkte> produkte { get; private set; }
 
         public int gebäudeAnzahl {  get; private set; }
         public int gesamtBev {  get; private set; }

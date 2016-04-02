@@ -45,6 +45,7 @@ namespace GameJam
                 if(city.MouseHoversHere(mousePosition) == true)
                 {
                     selectedCity = city;
+                    break;
                 }
                 else
                 {
