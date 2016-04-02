@@ -15,23 +15,30 @@ namespace GameJam
         // Overall Variables
         public Vector2i realPosition; // realPosition = centered on the Sprite
         Sprite sprite;
+        Rathaus rathaus;
 
+        int gesamtBev;
+        int arbeitBev;
 
         // Economy Variables;
 
-        public Settlement(Vector2i mousePosition)
+        public Settlement(Vector2i mousePosition, int newBev)
         {
             Sprite defaultSprite = new Sprite(new Texture("textures/Small_Village_Center.png"));
             sprite = defaultSprite;
             sprite.Position = new Vector2f(mousePosition.X - sprite.TextureRect.Width, mousePosition.Y - sprite.TextureRect.Height);
             realPosition = new Vector2i(mousePosition.X - sprite.TextureRect.Width / 2, mousePosition.Y - sprite.TextureRect.Height / 2);
+
+            InitializeBev(newBev);
         }
 
-        public Settlement(Sprite _sprite, Vector2i mousePosition)
+        public Settlement(Sprite _sprite, Vector2i mousePosition, int newBev)
         {
             sprite = _sprite;
             sprite.Position = new Vector2f(mousePosition.X - sprite.TextureRect.Width, mousePosition.Y - sprite.TextureRect.Height);
             realPosition = new Vector2i(mousePosition.X - sprite.TextureRect.Width / 2, mousePosition.Y - sprite.TextureRect.Height / 2);
+
+            InitializeBev(newBev);
         }
 
         /// <summary>
@@ -39,15 +46,25 @@ namespace GameJam
         /// </summary>
         /// <param name="_sprite"></param>
         /// <param name="_realPosition">this is only because i wanted a different constructor</param>
-        public Settlement(Sprite _sprite, Vector2f _realPosition)
+        public Settlement(Sprite _sprite, Vector2f _realPosition, int newBev)
         {
             sprite = _sprite;
             realPosition = new Vector2i((int)_realPosition.X, (int)_realPosition.Y);
+
+            InitializeBev(newBev);
+        }
+
+        void InitializeBev(int newBev)
+        {
+            rathaus = new Rathaus(newBev);
         }
 
         public void Update(GameTime gTime)
         {
 
+            rathaus.Update(gTime);
+            gesamtBev = rathaus.getGesamtBev();
+            gesamtBev = rathaus.getArbeitBev();
         }
 
         public void Draw(RenderWindow window)
@@ -56,6 +73,6 @@ namespace GameJam
             
         }
         
-
+        
     }
 }
