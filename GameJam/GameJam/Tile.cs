@@ -18,15 +18,9 @@ namespace GameJam
         public Tile(Vector2f position, int type, int tilesize)
         {
             begehebar = true;
-            SetRessource(type);
-            
-            //Create Tile Shape
-            tileColor = MapSettings.typeColor[type];
-        }
-
-        void SetRessource(int type)
-        {
             ressource = new Ressource(type);
+            
+            tileColor = MapSettings.typeColor[type];
         }
 
         public Ressource GetRessource()

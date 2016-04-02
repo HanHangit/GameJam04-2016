@@ -33,8 +33,8 @@ namespace GameJam
 
         void CollectRessourceRef()
         {
-            int x = (int)position.X;
-            int y = (int)position.Y;
+            int x = (int)position.X ;
+            int y = (int)position.Y ;
             for(int i = x- radius; i < x + radius; ++i)
                 for(int l = y - radius; l < y + radius; ++l)
                 {
@@ -43,7 +43,10 @@ namespace GameJam
                         Tile foundTile = Game.map.tileMap[i,l];
                         Ressource foundRessource = foundTile.GetRessource();
                         if (!foundRessource.GetName().Equals("None"))
+                        {
                             ressourceRef.Add(foundRessource);
+                            Console.WriteLine(foundRessource.ToString());
+                        }
                     }
                 }
 
@@ -56,6 +59,9 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+                foreach (Ressource r in ressourceRef)
+                    Console.WriteLine(r.ToString());
             foreach (Building b in buildings)
                 b.Update(gTime);
         }
