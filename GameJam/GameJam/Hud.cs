@@ -28,6 +28,8 @@ namespace GameJam
             textList = new List<HudText>();
             
             standardFont = new Font("fonts/arial.ttf");
+            if (exampleSprite != null)
+                exampleSprite.Dispose();
             exampleSprite = new Sprite();
             
             exampleSprite.Texture = new Texture(new Image("textures/Small_Village_Center.png"));
@@ -86,10 +88,6 @@ namespace GameJam
                 }
                 textList.Find(i => i.textName.Equals("ressourcen")).ChangeText(ressourceOutput);
                 String produktOutput = "";
-                if(selectedCity.produkte.Count() != 0)
-                {
-                    Console.WriteLine("Produkte ist nicht empty");
-                }
                 foreach(Produkte p in selectedCity.produkte)
                 {
                     produktOutput += p.ToString() + "\n";

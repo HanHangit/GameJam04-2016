@@ -32,7 +32,7 @@ namespace GameJam
         public override void Update(GameTime gTime)
         {
             wachstum = zufriedenHeit * gTime.Ellapsed.Milliseconds / 100;
-            Console.WriteLine(wachstum);
+            //Console.WriteLine(wachstum);
             currentBewohner += wachstum;
             auslastung = (float)currentBewohner / (float)maxBewohner;
             if(auslastung >= 1)

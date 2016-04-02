@@ -70,9 +70,6 @@ namespace GameJam
             WorkerVerteilung();
             KiUpdate();
 
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
-                foreach (Ressource r in ressources)
-                    Console.WriteLine(r.ToString());
             foreach (Building b in buildings)
                 b.Update(gTime);
 
