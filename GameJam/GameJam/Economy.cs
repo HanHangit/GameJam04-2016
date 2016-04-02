@@ -13,7 +13,7 @@ namespace GameJam
     class Economy
     {
         private List<Settlement> settleList;
-
+        
         public Economy()
         {
             settleList = new List<Settlement>();
@@ -23,6 +23,7 @@ namespace GameJam
         {
             //TODO: Stadt update
             Vector2i mousePosition = Mouse.GetPosition(window);
+
             if (Mouse.IsButtonPressed(Mouse.Button.Right))
             {
                 settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition, 20));

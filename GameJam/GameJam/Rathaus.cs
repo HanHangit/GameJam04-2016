@@ -12,20 +12,32 @@ namespace GameJam
         int arbeitBev;
         double realGesamtBev;
         double bevWachs;
+        List<Ressource> ressources;
+        List<Produkte> produkte;
 
-        public Rathaus(int _gesamtBev)
+        public Rathaus(int _gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
         {
             gesamtBev = _gesamtBev;
             realGesamtBev = gesamtBev;
             arbeitBev = gesamtBev / 2;
             bevWachs = 0.000001;
+
+            ressources = _ressources;
+            produkte = _produkte;
+
         }
 
         public void Update(GameTime gTime)
         {
             // bevWachs muss von Bevölkerung selber und Zufriedenheut abhängig sein;
+
+
+            //int foodPerPerson = 
+
             realGesamtBev += bevWachs * gTime.Ellapsed.Milliseconds; 
             gesamtBev = (int) realGesamtBev;
+
+            
         }
 
         public int getGesamtBev()

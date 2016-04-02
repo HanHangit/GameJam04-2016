@@ -60,7 +60,7 @@ namespace GameJam
         void InitializeBev(int newBev)
         {
             InitializeResPro();
-            rathaus = new Rathaus(newBev);
+            rathaus = new Rathaus(newBev, ressources, produkte);
             lager = new Lager(realPosition, 10, gesamtBev, ressources, produkte);
         }
 
