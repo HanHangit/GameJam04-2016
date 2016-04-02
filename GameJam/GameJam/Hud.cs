@@ -41,7 +41,7 @@ namespace GameJam
             textList.Add(new HudText("gesamtBev", "---", new Vector2f(0, 220)));
             textList.Add(new HudText("gebäudeAnzahl", "---", new Vector2f(0, 240)));
             textList.Add(new HudText("ressourcen", "---", new Vector2f(0, 260)));
-            textList.Add(new HudText("produkte", "---", new Vector2f(0, 320)));
+            textList.Add(new HudText("produkte", "---", new Vector2f(0, 500)));
         }
        
         public void Update(RenderWindow window, GameTime gameTime, Settlement selectedCity)
@@ -86,9 +86,13 @@ namespace GameJam
                 }
                 textList.Find(i => i.textName.Equals("ressourcen")).ChangeText(ressourceOutput);
                 String produktOutput = "";
+                if(selectedCity.produkte.Count() != 0)
+                {
+                    Console.WriteLine("Produkte ist nicht empty");
+                }
                 foreach(Produkte p in selectedCity.produkte)
                 {
-                    ressourceOutput += p.ToString() + "\n";
+                    produktOutput += p.ToString() + "\n";
                 }
                 textList.Find(i => i.textName.Equals("produkte")).ChangeText(produktOutput);
             }

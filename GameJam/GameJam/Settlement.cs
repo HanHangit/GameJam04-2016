@@ -66,7 +66,7 @@ namespace GameJam
 
         void InitializeResPro()
         {
-            
+
             ressources = new List<Ressource>();
             produkte = new List<Produkte>();
             for (int i = 0; i < MapSettings.ressourcesName.Length; ++i)

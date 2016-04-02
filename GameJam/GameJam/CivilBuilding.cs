@@ -9,28 +9,17 @@ using SFML.Window;
 
 namespace GameJam
 {
-    abstract class Building
+    abstract class CivilBuilding
     {
+        public int entwicklungsStufe;
         public List<Ressource> ressources;
         public List<Produkte> produkte;
-        public RectangleShape shape = new RectangleShape(new Vector2f(1, 1));
-        public List<Sprite> sprite;
-        public int entwicklungsStufe;
-        public int maxWorkers { get; set; }
-        public int currentWorkers { get; private set; }
+        public int maxBewohner { get; set; }
+        public float currentBewohner { get; set; }
         public float auslastung { get; set; }
         public string name;
-        public int status;
         public abstract override string ToString();
         public abstract void Update(GameTime gTime);
-        public abstract void Draw(RenderWindow window);
-
-        public void BindingWorker(int Workers)
-        {
-            currentWorkers = Workers;
-
-
-        }
 
 
     }
