@@ -45,7 +45,7 @@ namespace GameJam
             rnd = new Random();
             RandomMap();
             CreateRessources(5);
-            CollectRessources(10);
+            CollectRessources(50);
             CreateRiver(1);
             CreateTiles();
             UpdateMap();
@@ -106,8 +106,8 @@ namespace GameJam
 
         void CreateRessourceField(int x, int y)
         {
-            for (int i = x - 1; i <= x + 1; ++i)
-                for (int l = y - 1; l <= y + 1; ++l)
+            for (int i = x - 1; i < x + 1; ++i)
+                for (int l = y - 1; l < y + 1; ++l)
                 {
                     if (!InsideMap(i, l))
                         continue;

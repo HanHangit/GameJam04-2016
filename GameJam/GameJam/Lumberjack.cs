@@ -22,12 +22,13 @@ namespace GameJam
             refRessources = new List<Ressource>();
             production.Add("Holz");
             refRessources = _refRessources;
-            abbaugeschwindigkeit = 1;
+            abbaugeschwindigkeit = 0.001f;
             ressources = _ressources;
             produkte = _produkte;
             currentWorkers = 0;
             entwicklungsStufe = 1;
-            maxWorkers = 6;
+            maxWorkers = 25;
+            auslastung = 0;
         }
 
         public override void Draw(RenderWindow window)
@@ -37,13 +38,14 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
+            auslastung = currentWorkers / maxWorkers;
 
             for(int i = 0; i < production.Count;++i)
             {
                 Ressource foundRes = refRessources.Find(item => item.name.Equals(production[i]));
                 if(foundRes != null)
                 {
-                    float menge = foundRes.Holen(abbaugeschwindigkeit * gTime.Ellapsed.Milliseconds);
+                    float menge = foundRes.Holen(abbaugeschwindigkeit * auslastung * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                     
                 }

@@ -61,7 +61,7 @@ namespace GameJam
         {
             InitializeResPro();
             rathaus = new Rathaus(newBev,ressources,produkte);
-            lager = new Lager(realPosition, 20, gesamtBev, ressources, produkte);
+            lager = new Lager(realPosition, gesamtBev, ressources, produkte);
         }
 
         void InitializeResPro()
@@ -77,10 +77,11 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
+            gesamtBev = rathaus.getGesamtBev();
+            arbeitBev = rathaus.getArbeitBev();
+            lager.workers = arbeitBev;
             lager.Update(gTime);
             rathaus.Update(gTime);
-            gesamtBev = rathaus.getGesamtBev();
-            gesamtBev = rathaus.getArbeitBev();
             if (Keyboard.IsKeyPressed(Keyboard.Key.B))
                 Console.WriteLine(ressources[3].ToString());
         }

@@ -36,11 +36,11 @@ namespace GameJam
         public static int[] ressourcesWahrscheinlichkeit =
         {
             99999,
-            15,
-            10,
-            7,
-            5,
-            3
+            75,
+            50,
+            40,
+            30,
+            10
 
         };
     }

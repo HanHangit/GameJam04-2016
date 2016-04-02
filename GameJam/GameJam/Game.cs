@@ -21,7 +21,7 @@ namespace GameJam
         public Game()
         {
             hud = new Hud();
-            window = new RenderWindow(new VideoMode(800, 500), "GameJam");
+            window = new RenderWindow(new VideoMode(1800, 1000), "GameJam");
             window.Closed += (object sender, EventArgs e) => { (sender as Window).Close(); };
 
 			int tilesize = MapSettings.tilesize;
