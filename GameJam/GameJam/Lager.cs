@@ -17,9 +17,9 @@ namespace GameJam
         List<Building> buildings;
         int radius;
         int arbeiter;
-        Vector2f position;
+        Vector2i position;
         
-        public Lager(Vector2f pos, int _radius, int gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
+        public Lager(Vector2i pos, int _radius, int gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
         {
             ressources = _ressources;
             produkte = _produkte;

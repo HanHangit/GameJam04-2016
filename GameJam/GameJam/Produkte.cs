@@ -14,12 +14,10 @@ namespace GameJam
         int cost;
         float amount;
 
-        public Produkte(string _name,Ressource[] _ressources, Produkte[] _produkte, int _cost)
+        public Produkte(string _name, int _cost)
         {
             amount = 0;
             name = _name;
-            ressources = _ressources;
-            produkte = _produkte;
             cost = _cost;
         }
     }

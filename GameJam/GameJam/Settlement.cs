@@ -16,6 +16,9 @@ namespace GameJam
         public Vector2i realPosition; // realPosition = centered on the Sprite
         Sprite sprite;
         Rathaus rathaus;
+        Lager lager;
+        List<Ressource> ressources;
+        List<Produkte> produkte;
 
         int gesamtBev;
         int arbeitBev;
@@ -56,7 +59,17 @@ namespace GameJam
 
         void InitializeBev(int newBev)
         {
+            InitializeResPro();
             rathaus = new Rathaus(newBev);
+            lager = new Lager(realPosition, 10, gesamtBev, ressources, produkte);
+        }
+
+        void InitializeResPro()
+        {
+            for (int i = 0; i < MapSettings.ressourcesName.Length; ++i)
+                ressources.Add(new Ressource(i));
+            for (int i = 0; i < ProduktSettings.produktName.Length; ++i)
+                produkte.Add(new Produkte(ProduktSettings.produktName[i], ProduktSettings.produktCost[i]));
         }
 
         public void Update(GameTime gTime)

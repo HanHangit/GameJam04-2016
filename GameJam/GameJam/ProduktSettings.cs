@@ -8,9 +8,19 @@ namespace GameJam
 {
     class ProduktSettings
     {
-        public static string[] produktNamen =
+        public static string[] produktName =
         {
-            "Eisen"
+            "Eisen",
+            "Bretter",
+            "Schmuck"
         };
+
+        public static int[] produktCost =
+        {
+            10,
+            8,
+            37
+        };
+
     }
 }
