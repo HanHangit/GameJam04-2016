@@ -33,8 +33,8 @@ namespace GameJam
 
         void CollectRessourceRef()
         {
-            int x = (int)position.X ;
-            int y = (int)position.Y ;
+            int x = (int)position.X / MapSettings.tilesize;
+            int y = (int)position.Y / MapSettings.tilesize;
             for(int i = x- radius; i < x + radius; ++i)
                 for(int l = y - radius; l < y + radius; ++l)
                 {

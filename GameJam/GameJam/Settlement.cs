@@ -13,7 +13,7 @@ namespace GameJam
     class Settlement
     {
         // Overall Variables
-        public Vector2i realPosition; // realPosition = centered on the Sprite
+        Vector2i realPosition; // realPosition = centered on the Sprite
         Sprite sprite;
         Rathaus rathaus;
         Lager lager;
@@ -60,12 +60,13 @@ namespace GameJam
         void InitializeBev(int newBev)
         {
             InitializeResPro();
-            rathaus = new Rathaus(newBev);
-            lager = new Lager(realPosition, 50, gesamtBev, ressources, produkte);
+            rathaus = new Rathaus(newBev,ressources,produkte);
+            lager = new Lager(realPosition, 25, gesamtBev, ressources, produkte);
         }
 
         void InitializeResPro()
         {
+            
             ressources = new List<Ressource>();
             produkte = new List<Produkte>();
             for (int i = 0; i < MapSettings.ressourcesName.Length; ++i)
