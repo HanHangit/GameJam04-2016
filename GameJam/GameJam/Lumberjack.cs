@@ -20,7 +20,6 @@ namespace GameJam
         {
             production = new List<string>();
             production.Add("Wood");
-            refRessources = new List<Ressource>();
             refRessources = _refRessources;
             abbaugeschwindigkeit = 1;
             ressources = _ressources;
@@ -37,6 +36,7 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
+
             for(int i = 0; i < production.Count;++i)
             {
                 Ressource foundRes = refRessources.Find(item => item.GetName().Equals(production[i]));
@@ -44,8 +44,10 @@ namespace GameJam
                 {
                     float menge = foundRes.Holen(abbaugeschwindigkeit * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.GetName().Equals(production[i])).Add(menge);
+                    
                 }
             }
+
         }
 
         public override string ToString()
