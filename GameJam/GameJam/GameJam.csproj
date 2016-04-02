@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Economy.cs" />
     <Compile Include="GameTime.cs" />
     <Compile Include="HudText.cs" />
     <Compile Include="Game.cs" />

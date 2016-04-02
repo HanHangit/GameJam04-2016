@@ -15,7 +15,7 @@ namespace GameJam
         private Font standardFont;
 
         private List<HudText> textList;
-        private List<Settlement> settleList;
+
 
         private Vector2i mousePosition;
         private TimeSpan totalTime;
@@ -25,7 +25,7 @@ namespace GameJam
         public Hud()
         {
             textList = new List<HudText>();
-            settleList = new List<Settlement>();
+            
             standardFont = new Font("fonts/arial.ttf");
             exampleSprite = new Sprite();
             
@@ -45,13 +45,7 @@ namespace GameJam
             
             exampleSprite.Position = new Vector2f(mousePosition.X - exampleSprite.TextureRect.Width, mousePosition.Y - exampleSprite.TextureRect.Height);
 
-            if (Mouse.IsButtonPressed(Mouse.Button.Right))
-            {
-                settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition));
-
-            }
-
-            // searches HudText mousPos and udpates the output
+           // searches HudText mousPos and udpates the output
             textList.Find(i => i.textName.Equals("mousePos")).ChangeText("MousePos: X = " + mousePosition.X + "; Y = " + mousePosition.Y);
             // updates output of TotalTime
             textList.Find(i => i.textName.Equals("totalTime")).ChangeText("Time " + stringTime);
@@ -62,12 +56,6 @@ namespace GameJam
         public void DrawHud(RenderWindow window)
         {
             window.Draw(exampleSprite);
-            foreach( Settlement city in settleList)
-            {
-                Console.WriteLine(city.getSprite().Position.ToString());
-                window.Draw(city.getSprite());
-            }
-
             foreach (HudText text in textList)
             {
                 window.Draw(text.getText());
