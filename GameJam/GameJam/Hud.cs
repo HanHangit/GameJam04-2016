@@ -36,9 +36,14 @@ namespace GameJam
             textList.Add(new HudText("mousePos", "---", new Vector2f(0, 0)));
             textList.Add(new HudText("totalTime", "---", new Vector2f(0, 20)));
             textList.Add(new HudText("fps", "---", new Vector2f(0, 40)));
+
+            textList.Add(new HudText("stadtAusgewählt", "---", new Vector2f(0, 200)));
+            textList.Add(new HudText("gesamtBev", "---", new Vector2f(0, 220)));
+            textList.Add(new HudText("gebäudeAnzahl", "---", new Vector2f(0, 240)));
+            textList.Add(new HudText("bla", "---", new Vector2f(0, 260)));
         }
        
-        public void Update(RenderWindow window, GameTime gameTime)
+        public void Update(RenderWindow window, GameTime gameTime, Settlement selectedCity)
         {
             mousePosition = Mouse.GetPosition(window);
             totalTime = gameTime.TotalTime;
@@ -53,6 +58,25 @@ namespace GameJam
             textList.Find(i => i.textName.Equals("totalTime")).ChangeText("Time " + stringTime);
             // updates output of Frames
             textList.Find(i => i.textName.Equals("fps")).ChangeText("FPS: " + fps);
+
+            updateStadtInfo(selectedCity);
+        }
+
+        void updateStadtInfo(Settlement selectedCity)
+        {
+            if (selectedCity == null)
+            {
+                textList.Find(i => i.textName.Equals("stadtAusgewählt")).ChangeText("No City Selected");
+                textList.Find(i => i.textName.Equals("gesamtBev")).RemoveText();
+                textList.Find(i => i.textName.Equals("gebäudeAnzahl")).RemoveText();
+                return;
+            }
+            else
+            {
+                textList.Find(i => i.textName.Equals("stadtAusgewählt")).ChangeText("City Selected");
+                textList.Find(i => i.textName.Equals("gesamtBev")).ChangeText("Bevölkerung: " + selectedCity.gesamtBev);
+                textList.Find(i => i.textName.Equals("gebäudeAnzahl")).ChangeText("Gebäudeanzahl: " + selectedCity.gebäudeAnzahl);
+            }
         }
 
         public void DrawHud(RenderWindow window)
