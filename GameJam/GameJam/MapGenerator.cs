@@ -203,6 +203,7 @@ namespace GameJam
 
         public void DrawMap(RenderWindow window)
         {
+            UpdateMap();
             window.Draw(mapSprite);
         }
     }
