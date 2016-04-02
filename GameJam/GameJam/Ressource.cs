@@ -20,5 +20,25 @@ namespace GameJam
             name = MapSettings.ressourcesName[type];
             amount = rnd.Next(100, 500);
         }
+
+        public string GetName() { return name; }
+
+        public override string ToString()
+        {
+            return name + ": " + amount;
+        }
+
+        public float Abbauen(float menge)
+        {
+            if (menge < amount)
+            {
+                amount -= menge;
+                return menge;
+            }
+            else if (amount > 0)
+                return amount;
+            else
+                return 0;
+        }
     }
 }

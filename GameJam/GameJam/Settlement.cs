@@ -13,7 +13,7 @@ namespace GameJam
     class Settlement
     {
         // Overall Variables
-        Vector2i realPosition; // realPosition = centered on the Sprite
+        public Vector2i realPosition; // realPosition = centered on the Sprite
         Sprite sprite;
 
 
@@ -53,6 +53,7 @@ namespace GameJam
         public void Draw(RenderWindow window)
         {
             window.Draw(sprite);
+            
         }
         
 

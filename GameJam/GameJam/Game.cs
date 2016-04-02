@@ -14,7 +14,7 @@ namespace GameJam
         RenderWindow window;
         Hud hud;
         GameTime gameTime;
-        MapGenerator map;
+        public static MapGenerator map;
         Economy eco;
 
         public Game()
@@ -28,20 +28,12 @@ namespace GameJam
             gameTime = new GameTime();
             eco = new Economy();
 
-            //Draw TImer Update
-            float fixedDrawTime = 0;
-            float currentDrawTimer = 0;
-
             while (window.IsOpen)
             {
 
                 UpdateAll();
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))
                     map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
-
-
-                currentDrawTimer += gameTime.Ellapsed.Milliseconds;
-                    currentDrawTimer = 0;
                     DrawAll();
 
                 Console.WriteLine(1000f / gameTime.Ellapsed.Milliseconds);

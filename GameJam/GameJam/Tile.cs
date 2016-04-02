@@ -28,5 +28,10 @@ namespace GameJam
         {
             ressource = new Ressource(type);
         }
+
+        public Ressource GetRessource()
+        {
+            return ressource;
+        }
     }
 }

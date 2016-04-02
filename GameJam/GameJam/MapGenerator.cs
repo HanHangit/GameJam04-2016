@@ -15,7 +15,7 @@ namespace GameJam
         int tilesize = MapSettings.tilesize;
         bool[,] boolMap;
         int[,] intMap;
-        Tile[,] tileMap;
+        public Tile[,] tileMap { get; private set; }
         Random rnd;
         Texture mapTexture;
         Sprite mapSprite;
@@ -167,7 +167,7 @@ namespace GameJam
 
         }
 
-        bool InsideMap(int x, int y)
+        public bool InsideMap(int x, int y)
         {
             if (x >= intMap.GetLength(0) || y >= intMap.GetLength(1) || x < 0 || y < 0)
                 return false;
