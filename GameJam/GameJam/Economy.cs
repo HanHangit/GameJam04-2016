@@ -30,12 +30,10 @@ namespace GameJam
             {
                 if (noCityInRadius(mousePosition))
                 {
-                    Console.WriteLine(noCityInRadius(mousePosition));
                     settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition, 20));
                 }
                 else
                 {
-                    Console.WriteLine("U cannot build there!");
                 }
             }
 
