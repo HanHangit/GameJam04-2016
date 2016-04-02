@@ -26,6 +26,5 @@ namespace GameJam
         public void BindingWorker(int Workers)
         {
             currentWorkers = Workers;
-        }
-    }
+        }    }
 }
