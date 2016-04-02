@@ -17,8 +17,9 @@ namespace GameJam
         int[,] intMap;
         public Tile[,] tileMap { get; private set; }
         Random rnd;
-        Texture mapTexture;
         Sprite mapSprite;
+        Image mapImage;
+        Texture mapTexture;
 
 
 
@@ -186,6 +187,8 @@ namespace GameJam
 
         }
 
+
+
         void UpdateMap()
         {
             Color[,] mapColor = new Color[intMap.GetLength(0), intMap.GetLength(1)];
@@ -195,8 +198,14 @@ namespace GameJam
                     mapColor[i, l] = tileMap[i, l].tileColor;
                 }
 
-            Image mapImage = new Image(mapColor);
+            if (mapImage != null)
+                mapImage.Dispose();
+            mapImage = new Image(mapColor);
+            if (mapTexture != null)
+                mapTexture.Dispose();
             mapTexture = new Texture(mapImage, new IntRect(0, 0, intMap.GetLength(0) * MapSettings.tilesize, intMap.GetLength(1) * MapSettings.tilesize));
+            if (mapSprite != null)
+                mapSprite.Dispose();
             mapSprite = new Sprite(mapTexture);
             mapSprite.Scale = new Vector2f(MapSettings.tilesize, MapSettings.tilesize);
         }

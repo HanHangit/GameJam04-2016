@@ -36,8 +36,6 @@ namespace GameJam
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))
                     map = new MapGenerator((int)window.Size.X / tilesize, (int)window.Size.Y / tilesize);
                     DrawAll();
-
-                Console.WriteLine(1000f / gameTime.Ellapsed.Milliseconds);
                 window.DispatchEvents();
             }
         }

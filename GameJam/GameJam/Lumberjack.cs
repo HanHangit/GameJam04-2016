@@ -18,6 +18,7 @@ namespace GameJam
 
         public Lumberjack(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
         {
+            production = new List<string>();
             production.Add("Wood");
             refRessources = _refRessources;
             abbaugeschwindigkeit = 1;
@@ -35,15 +36,23 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
+
             for(int i = 0; i < production.Count;++i)
             {
-                
+                Ressource foundRes = refRessources.Find(item => item.GetName().Equals(production[i]));
+                if(foundRes != null)
+                {
+                    float menge = foundRes.Holen(abbaugeschwindigkeit * gTime.Ellapsed.Milliseconds);
+                    ressources.Find(item => item.GetName().Equals(production[i])).Add(menge);
+                    
+                }
             }
+
         }
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "Hallo";
         }
     }
 }

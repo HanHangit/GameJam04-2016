@@ -25,7 +25,10 @@ namespace GameJam
             produkte = _produkte;
             radius = _radius;
             arbeiter = gesamtBev / 2;
+            ressourceRef = new List<Ressource>();
+            buildings = new List<Building>();
             CollectRessourceRef();
+            buildings.Add(new Lumberjack(ressources, produkte, ressourceRef));
         }
 
         void CollectRessourceRef()
@@ -53,7 +56,8 @@ namespace GameJam
 
         public void Update(GameTime gTime)
         {
-
+            foreach (Building b in buildings)
+                b.Update(gTime);
         }
 
 
