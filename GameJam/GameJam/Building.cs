@@ -13,6 +13,8 @@ namespace GameJam
     {
         public List<Ressource> ressources;
         public List<Produkte> produkte;
+        public RectangleShape shape = new RectangleShape(new Vector2f(1,1));
+        public List<Sprite> sprite;
         public int entwicklungsStufe;
         public int maxWorkers { get; set; }
         public int currentWorkers { get; private set; }
