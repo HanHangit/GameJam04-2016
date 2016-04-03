@@ -14,11 +14,15 @@ namespace GameJam
     {
         private List<Settlement> settleList;
         public Settlement selectedCity;
+
+        Texture settlementTexture;
         
         public Economy()
         {
             settleList = new List<Settlement>();
             selectedCity = null;
+
+            settlementTexture = new Texture(("textures/Small_Village_Center.png"));
         }
 
         public void Update(RenderWindow window, GameTime gTime)
@@ -30,7 +34,7 @@ namespace GameJam
             {
                 if (noCityInRadius(mousePosition))
                 {
-                    settleList.Add(new Settlement(new Sprite(new Texture("textures/Small_Village_Center.png")), mousePosition, 20));
+                    settleList.Add(new Settlement(new Sprite(settlementTexture), mousePosition, 20));
                 }
                 else
                 {

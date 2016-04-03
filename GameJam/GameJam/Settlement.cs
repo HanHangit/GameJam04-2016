@@ -21,10 +21,12 @@ namespace GameJam
         public List<Produkte> produkte { get; private set; }
 
         public int gebäudeAnzahl {  get; private set; }
+        int ausbreitung;
         public int gesamtBev {  get; private set; }
         public int arbeitBev {  get; private set; }
 
         Sprite background;
+        Sprite backgroundPH;
         // Economy Variables;
 
         public Settlement(Vector2i mousePosition, int newBev)
@@ -57,6 +59,7 @@ namespace GameJam
             realPosition = new Vector2i((int)_realPosition.X, (int)_realPosition.Y);
 
             InitializeBev(newBev);
+                   
         }
 
         void InitializeBev(int newBev)
@@ -64,6 +67,10 @@ namespace GameJam
             InitializeResPro();
             rathaus = new Rathaus(newBev,ressources,produkte);
             lager = new Lager(realPosition, 10, ressources, produkte);
+
+            ausbreitung = 0;
+            backgroundPH = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(ausbreitung * 2)), (uint)(sprite.TextureRect.Height + (int)(ausbreitung * 2)), Color.Magenta)));
+
         }
 
         void InitializeResPro()
@@ -84,14 +91,24 @@ namespace GameJam
             lager.workers = arbeitBev;
             lager.Update(gTime);
             gebäudeAnzahl = lager.getGebäudeAnzahl() + rathaus.getGebäudeAnzahl();
+            if (ausbreitung != gebäudeAnzahl / 4)
+            {
+                ausbreitung = gebäudeAnzahl / 4;
+                if (backgroundPH != null)
+                    backgroundPH.Dispose();
+                backgroundPH = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(ausbreitung * 2)), (uint)(sprite.TextureRect.Height + (int)(ausbreitung * 2)), Color.Magenta)));
+            }
             rathaus.Update(gTime);
+
         }
 
         public void Draw(RenderWindow window)
         {
+/*
             if (background != null)
                 background.Dispose();
-            background = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(gebäudeAnzahl / 2 * 2)), (uint)(sprite.TextureRect.Height + (int)(gebäudeAnzahl / 2 * 2)), Color.Magenta)));
+                */
+            background = backgroundPH;
             background.Position = new Vector2f(realPosition.X - (int)(background.TextureRect.Width / 2), realPosition.Y - (int)(background.TextureRect.Height / 2));
             window.Draw(background);
             window.Draw(sprite);
