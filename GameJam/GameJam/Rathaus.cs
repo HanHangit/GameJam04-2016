@@ -36,13 +36,12 @@ namespace GameJam
             civilBuildings = new List<CivilBuilding>();
             newHouseRequest = new List<CivilBuilding>();
             requestList = new List<CivilRequest>();
-            WohnHaus firstWohnHaus = new WohnHaus(ressources, produkte);
-            firstWohnHaus.currentBewohner = 20;
-            civilBuildings.Add(firstWohnHaus);
-
             ressources = _ressources;
             produkte = _produkte;
 
+            WohnHaus firstWohnHaus = new WohnHaus(ressources, produkte);
+            firstWohnHaus.currentBewohner = 20;
+            civilBuildings.Add(firstWohnHaus);
         }
 
         public void Update(GameTime gTime)
