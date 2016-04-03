@@ -13,8 +13,12 @@ namespace GameJam
         List<Ressource> refRessources;
         List<string> production;
 
-        public Bauernhof(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
+        public Bauernhof(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources, List<KiTask> _kiList)
         {
+            currentExp = 0;
+            maxExp = 1000;
+            zuwachsExp = 0.1f;
+            kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();
             production.Add("Food");

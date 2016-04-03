@@ -27,7 +27,7 @@ namespace GameJam
         public Lager(Vector2i pos, int _radius, List<Ressource> _ressources, List<Produkte> _produkte, List<KiTask> _kiList)
         {
             kiList = _kiList;
-            kiUpdateTime = 5000;
+            kiUpdateTime = 1000;
             timer = 0;
             position = pos;
             ressources = new List<Ressource>();
@@ -38,7 +38,7 @@ namespace GameJam
             ressourceRef = new List<Ressource>();
             buildings = new List<Building>();
             CollectRessourceRef();
-            maxBuildings = 1;
+            maxBuildings = 5;
         }
 
         void CollectRessourceRef()
@@ -73,7 +73,10 @@ namespace GameJam
             KiUpdate();
 
             foreach (Building b in buildings)
+            {
                 b.Update(gTime);
+                b.UpdateExp(gTime);
+            }
 
 
         }
@@ -93,10 +96,11 @@ namespace GameJam
                             KiTask task = new KiTask(ressourceRef[i].name, 1);
                             KiTask checkTask = kiList.Find(item => item.task.Equals(task.task));
                             if (checkTask == null)
+                            {
                                 kiList.Add(task);
+                            }
                             else
                                 checkTask.AddValue(1);
-
                         }
                     }
                 }
@@ -104,10 +108,19 @@ namespace GameJam
                 {
                     for(int i = 0; i < kiList.Count; ++i)
                     {
-                        Building ToBuild = ChooseRessourceBuilding(kiList[i].task);
-                        if (ToBuild != null)
+                        Console.WriteLine(kiList.Count);
+                        Building ToBuildRessource = ChooseRessourceBuilding(kiList[i].task);
+                        Building ToBuildProdukt = ChooseProdukteBuilding(kiList[i].task);
+                        if (ToBuildRessource != null && buildings.Find(item => item.name.Equals(ToBuildRessource.name)) == null)
                         {
-                            buildings.Add(ToBuild);
+                            kiList.RemoveAt(i);
+                            buildings.Add(ToBuildRessource);
+                            break;
+                        }
+                        else if(ToBuildProdukt != null && buildings.Find(item => item.name.Equals(ToBuildProdukt.name)) == null)
+                        {
+                            kiList.RemoveAt(i);
+                            buildings.Add(ToBuildProdukt);
                             break;
                         }
                     }
@@ -119,9 +132,9 @@ namespace GameJam
         {
             switch (name)
             {
-                case "Eisen":   return new Hochofen(ressources, produkte);
-                case "Bretter": return new WoodCutter(ressources, produkte);
-                case "Schmuck": return new GoldSchmiede(ressources, produkte);
+                case "Eisen":   return new Hochofen(ressources, produkte, kiList);
+                case "Bretter": return new WoodCutter(ressources, produkte, kiList);
+                case "Schmuck": return new GoldSchmiede(ressources, produkte, kiList);
                 default:
                     return null;
             }
@@ -131,12 +144,12 @@ namespace GameJam
         {
             switch (name)
             {
-                case "Holz": return new Lumberjack(ressources, produkte, ressourceRef);
-                case "Food": return new Bauernhof(ressources, produkte, ressourceRef);
-                case "Eisenerz": return new ErzMine(ressources, produkte, ressourceRef);
-                case "Kohle": return new KohleMine(ressources, produkte, ressourceRef);
-                case "Fische": return new Fischer(ressources, produkte, ressourceRef);
-                case "Gold": return new GoldMine(ressources, produkte, ressourceRef);
+                case "Holz": return new Lumberjack(ressources, produkte, ressourceRef, kiList);
+                case "Food": return new Bauernhof(ressources, produkte, ressourceRef, kiList);
+                case "Eisenerz": return new ErzMine(ressources, produkte, ressourceRef, kiList);
+                case "Kohle": return new KohleMine(ressources, produkte, ressourceRef, kiList);
+                case "Fische": return new Fischer(ressources, produkte, ressourceRef, kiList);
+                case "Gold": return new GoldMine(ressources, produkte, ressourceRef, kiList);
                 default:
                     return null;
             }
