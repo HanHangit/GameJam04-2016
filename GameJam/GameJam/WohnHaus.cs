@@ -40,6 +40,8 @@ namespace GameJam
             // ZufriedenHeitUpdate
             float wantedFood = currentBewohner * entwicklungsStufe * 0.001f;
             float getFood = ressources.Find(i => i.name.Equals("Food")).Holen(wantedFood);
+            if(getFood > wantedFood)
+                getFood += ressources.Find(i => i.name.Equals("Fische")).Holen(wantedFood-getFood);
             if (wantedFood != 0)
                 zufriedenHeit = getFood / wantedFood * 2 - 1;
 
