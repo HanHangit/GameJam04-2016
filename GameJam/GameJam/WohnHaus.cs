@@ -37,6 +37,13 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
+            // ZufriedenHeitUpdate
+            float wantedFood = currentBewohner * entwicklungsStufe * 0.001f;
+            float getFood = ressources.Find(i => i.name.Equals("Food")).Holen(wantedFood);
+            if (wantedFood != 0)
+                zufriedenHeit = getFood / wantedFood * 2 - 1;
+
+
             wachstum = zufriedenHeit * gTime.Ellapsed.Milliseconds / 100;
             //Console.WriteLine(wachstum);
             currentBewohner += wachstum;
