@@ -23,7 +23,7 @@ namespace GameJam
             refRessources = new List<Ressource>();
             production.Add("Food");
             refRessources = _refRessources;
-            abbaugeschwindigkeit = 0.02f;
+            abbaugeschwindigkeit = 0.04f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
@@ -54,7 +54,7 @@ namespace GameJam
         {
             ++entwicklungsStufe;
             maxWorkers += 30;
-            abbaugeschwindigkeit += 0.005f;
+            abbaugeschwindigkeit += 0.008f;
             currentExp = 0;
             maxExp += 1000;
         }
