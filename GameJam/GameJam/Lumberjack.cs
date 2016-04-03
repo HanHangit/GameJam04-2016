@@ -15,8 +15,12 @@ namespace GameJam
         List<Ressource> refRessources;
         List<string> production;
 
-        public Lumberjack(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
+        public Lumberjack(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources, List<KiTask> _kiList)
         {
+            currentExp = 0;
+            maxExp = 1000;
+            zuwachsExp = 0.1f;
+            kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();
             production.Add("Holz");
@@ -37,17 +41,35 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
+            UpdateKiList();
             auslastung = (float)currentWorkers / (float)maxWorkers;
-            for(int i = 0; i < production.Count;++i)
+            for (int i = 0; i < production.Count; ++i)
             {
                 Ressource foundRes = refRessources.Find(item => item.name.Equals(production[i]));
-                if(foundRes != null)
+                if (foundRes != null)
                 {
                     float menge = foundRes.Holen(abbaugeschwindigkeit * auslastung * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                 }
             }
 
+
+        }
+
+        public void UpdateKiList()
+        {
+            if (entwicklungsStufe >= 3)
+            {
+                KiTask checkTask = kiList.Find(item => item.task.Equals("Bretter"));
+                if (checkTask == null)
+                {
+                    kiList.Add(new KiTask("Bretter", 5));
+                }
+                else
+                {
+                    checkTask.AddValue(0);
+                }
+            }
         }
     }
 }

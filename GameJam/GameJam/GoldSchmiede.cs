@@ -15,8 +15,12 @@ namespace GameJam
         List<float>[] amountRessources;
         List<string> production;
 
-        public GoldSchmiede(List<Ressource> _ressources, List<Produkte> _produkte)
+        public GoldSchmiede(List<Ressource> _ressources, List<Produkte> _produkte, List<KiTask> _kiList)
         {
+            currentExp = 0;
+            maxExp = 1000;
+            zuwachsExp = 0.1f;
+            kiList = _kiList;
             production = new List<string>();
             neededRessources = new List<string>[1];
             amountRessources = new List<float>[1];

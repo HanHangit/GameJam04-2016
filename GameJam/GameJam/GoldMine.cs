@@ -13,8 +13,12 @@ namespace GameJam
         List<Ressource> refRessources;
         List<string> production;
 
-        public GoldMine(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
+        public GoldMine(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources, List<KiTask> _kiList)
         {
+            currentExp = 0;
+            maxExp = 1000;
+            zuwachsExp = 0.1f;
+            kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();
             production.Add("Gold");
@@ -34,6 +38,7 @@ namespace GameJam
 
         public override void Update(GameTime gTime)
         {
+            UpdateKiList();
             auslastung = (float)currentWorkers / (float)maxWorkers;
             for (int i = 0; i < production.Count; ++i)
             {
@@ -42,6 +47,22 @@ namespace GameJam
                 {
                     float menge = foundRes.Holen(abbaugeschwindigkeit * auslastung * gTime.Ellapsed.Milliseconds);
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
+                }
+            }
+        }
+
+        public void UpdateKiList()
+        {
+            if (entwicklungsStufe >= 3)
+            {
+                KiTask checkTask = kiList.Find(item => item.task.Equals("Schmuck"));
+                if (checkTask == null)
+                {
+                    kiList.Add(new KiTask("Schmuck", 5));
+                }
+                else
+                {
+                    checkTask.AddValue(0);
                 }
             }
         }
