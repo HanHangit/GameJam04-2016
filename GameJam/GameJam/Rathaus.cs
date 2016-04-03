@@ -22,6 +22,8 @@ namespace GameJam
         List<CivilBuilding> civilBuildings;
         List<CivilBuilding> newHouseRequest;
 
+        List<CivilRequest> requestList;
+
         WohnHaus newWohnHaus;
 
         public Rathaus(int _gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)

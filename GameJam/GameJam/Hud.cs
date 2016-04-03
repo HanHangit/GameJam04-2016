@@ -43,7 +43,8 @@ namespace GameJam
             textList.Add(new HudText("gesamtBev", "---", new Vector2f(0, 220)));
             textList.Add(new HudText("gebäudeAnzahl", "---", new Vector2f(0, 240)));
             textList.Add(new HudText("ressourcen", "---", new Vector2f(0, 260)));
-            textList.Add(new HudText("produkte", "---", new Vector2f(0, 500)));
+            textList.Add(new HudText("produkte", "---", new Vector2f(0, 400)));
+            textList.Add(new HudText("lagerGebäude", "---", new Vector2f(0, 500)));
         }
        
         public void Update(RenderWindow window, GameTime gameTime, Settlement selectedCity)
@@ -74,6 +75,7 @@ namespace GameJam
                 textList.Find(i => i.textName.Equals("gebäudeAnzahl")).RemoveText();
                 textList.Find(i => i.textName.Equals("ressourcen")).RemoveText();
                 textList.Find(i => i.textName.Equals("produkte")).RemoveText();
+                textList.Find(i => i.textName.Equals("lagerGebäude")).RemoveText();
                 return;
             }
             else
@@ -93,6 +95,14 @@ namespace GameJam
                     produktOutput += p.ToString() + "\n";
                 }
                 textList.Find(i => i.textName.Equals("produkte")).ChangeText(produktOutput);
+                String lagerGebäudeOutput = "";
+                foreach (Building b in selectedCity.getLagerGebäudeList())
+                {
+                    lagerGebäudeOutput += b.ToString() + "\n";
+                }
+                textList.Find(i => i.textName.Equals("lagerGebäude")).ChangeText(lagerGebäudeOutput);
+
+
             }
         }
 
