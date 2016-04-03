@@ -18,7 +18,9 @@ namespace GameJam
         public Ressource(int type)
         {
             name = MapSettings.ressourcesName[type];
-            amount = rnd.Next(100, 500);
+            if (name.Equals("None"))
+                amount = 0;
+            else amount = rnd.Next(100, 500);
         }
 
         public Ressource(string type, float _amount)
@@ -49,10 +51,11 @@ namespace GameJam
             {
                 amount = 0;
                 return amount;
-
             }
             else
+            {
                 return 0;
+            }
         }
 
         public void Add(float menge)
