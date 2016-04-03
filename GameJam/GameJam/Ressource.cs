@@ -21,9 +21,21 @@ namespace GameJam
             amount = rnd.Next(100, 500);
         }
 
+        public Ressource(string type, float _amount)
+        {
+            name = type;
+            amount = _amount;
+        }
+
+        public Ressource(string type)
+        {
+            name = type;
+            amount = 0;
+        }
+
         public override string ToString()
         {
-            return name + ": " + amount;
+            return name + ": " + (int)amount;
         }
 
         public float Holen(float menge)
