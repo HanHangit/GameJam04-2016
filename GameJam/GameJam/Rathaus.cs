@@ -56,6 +56,7 @@ namespace GameJam
                 }
                 gesamtBev += (int)c.currentBewohner;
             }
+            arbeitBev = (int)(gesamtBev / 2);
 
             UpgradeHouses();
         }
