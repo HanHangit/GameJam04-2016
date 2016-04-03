@@ -25,6 +25,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "BauernHof";
         }
         public override void Draw(RenderWindow window)
         {

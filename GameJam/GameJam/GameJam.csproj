@@ -69,6 +69,7 @@
     <Compile Include="HudText.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Hud.cs" />
+    <Compile Include="KiTask.cs" />
     <Compile Include="KohleMine.cs" />
     <Compile Include="Lager.cs" />
     <Compile Include="Lumberjack.cs" />

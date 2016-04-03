@@ -27,6 +27,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "Lumberjack";
         }
 
         public override void Draw(RenderWindow window)

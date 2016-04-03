@@ -35,6 +35,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "HochOfen";
         }
 
 
@@ -45,7 +46,7 @@ namespace GameJam
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "Hochofen";
         }
 
         public override void Update(GameTime gTime)
