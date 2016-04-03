@@ -19,6 +19,7 @@ namespace GameJam
         // new BuildingRequest
         public CivilRequest(Building _requestingBuilding, Building _requestedBuilding, int requestPriority)
         {
+            requestPriority = 1;
             requestTyp = 1;
             findRessourcesNeeded(_requestedBuilding);
         }
@@ -47,7 +48,7 @@ namespace GameJam
                 // switch(case) changes 
                 switch(numberOfString)
                 {
-                    //case 0:  BauStoffe.Add(new Ressource()); break;
+                    case 0:  BauStoffe.Add(new Ressource("Holz", 30)); break;
                     default: throw new Exception("Building doesnt Exist in newBuildintTypes"); 
                 }
                 
