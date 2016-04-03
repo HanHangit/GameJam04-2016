@@ -20,6 +20,9 @@ namespace GameJam
         List<Produkte> produkte;
         List<Building> buildings;
         List<CivilBuilding> civilBuildings;
+        List<CivilBuilding> newHouseRequest;
+
+        WohnHaus newWohnHaus;
 
         public Rathaus(int _gesamtBev, List<Ressource> _ressources, List<Produkte> _produkte)
         {
@@ -29,10 +32,10 @@ namespace GameJam
             bevWachs = 0.001;
             buildings = new List<Building>();
             civilBuildings = new List<CivilBuilding>();
+            newHouseRequest = new List<CivilBuilding>();
             WohnHaus firstWohnHaus = new WohnHaus(ressources, produkte);
             firstWohnHaus.currentBewohner = 20;
             civilBuildings.Add(firstWohnHaus);
-
 
             ressources = _ressources;
             produkte = _produkte;
@@ -45,8 +48,35 @@ namespace GameJam
             foreach (CivilBuilding c in civilBuildings)
             {
                 c.Update(gTime);
+                if(c.name == "WohnHaus" && c.status == 2)
+                {
+                    newHouseRequest.Add(c);
+                }
                 gesamtBev += (int)c.currentBewohner;
             }
+
+            UpgradeHouses();
+        }
+
+        void UpgradeHouses()
+        {
+            while(newHouseRequest.Count > 0)
+            {
+                CivilBuilding c = newHouseRequest[0];
+                float newBewohner = c.currentBewohner / 2;
+                c.currentBewohner = newBewohner;
+                newWohnHaus = new WohnHaus(ressources, produkte);
+                newWohnHaus.currentBewohner = newBewohner;
+                if (newWohnHaus.maxBewohner < newBewohner)
+                {
+                    c.currentBewohner += newBewohner - newWohnHaus.maxBewohner;
+                    newWohnHaus.currentBewohner = newWohnHaus.maxBewohner;
+                }
+                civilBuildings.Add(newWohnHaus);
+                c.status = 0;
+                newHouseRequest.Remove(c);
+            }
+            
         }
 
         public void Draw(RenderWindow windowc)
@@ -66,7 +96,7 @@ namespace GameJam
 
         public int getGebäudeAnzahl()
         {
-            return buildings.Count();
+            return civilBuildings.Count();
         }
     }
 }

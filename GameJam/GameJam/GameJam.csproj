@@ -58,6 +58,9 @@
     <Compile Include="Bauernhof.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="CivilBuilding.cs" />
+    <Compile Include="CivilNewRequest.cs" />
+    <Compile Include="CivilRequest.cs" />
+    <Compile Include="CivilUpgradeRequest.cs" />
     <Compile Include="Economy.cs" />
     <Compile Include="ErzMine.cs" />
     <Compile Include="Fischer.cs" />

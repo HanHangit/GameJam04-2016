@@ -17,6 +17,7 @@ namespace GameJam
         public int maxBewohner { get; set; }
         public float currentBewohner { get; set; }
         public float auslastung { get; set; }
+        public int status;
         public string name;
         public abstract override string ToString();
         public abstract void Update(GameTime gTime);
