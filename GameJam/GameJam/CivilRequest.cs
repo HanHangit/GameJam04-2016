@@ -34,6 +34,7 @@ namespace GameJam
             
             if(this.requestTyp == 1)
             {
+                // finds Index of building in newBuildingTypes
                 int numberOfString = -1;
                 for(int i = 0; i < newBuildingTypes.Length; i++)
                 {
@@ -43,6 +44,8 @@ namespace GameJam
                         break;
                     }
                 }
+                // switch(case) changes 
+
                 
             }
             
