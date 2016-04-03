@@ -42,11 +42,6 @@ namespace GameJam
             throw new NotImplementedException();
         }
 
-        public override string ToString()
-        {
-            return "WoodCutter";
-        }
-
         public override void Update(GameTime gTime)
         {
             auslastung = (float)currentWorkers / (float)maxWorkers;

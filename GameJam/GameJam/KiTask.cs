@@ -9,13 +9,18 @@ namespace GameJam
     class KiTask
     {
 
-        string task;
-        float value;
+        public string task { get; private set; }
+        public float value { get;  private set; }
 
         public KiTask(string _task, float _value)
         {
             task = _task;
             value = _value;
+        }
+
+        public void AddValue(float menge)
+        {
+            value += menge;
         }
     }
 }

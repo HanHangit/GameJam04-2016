@@ -35,11 +35,6 @@ namespace GameJam
             throw new NotImplementedException();
         }
 
-        public override string ToString()
-        {
-            return "ErzMine";
-        }
-
         public override void Update(GameTime gTime)
         {
             auslastung = (float)currentWorkers / (float)maxWorkers;

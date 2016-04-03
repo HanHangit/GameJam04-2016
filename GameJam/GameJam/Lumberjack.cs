@@ -49,10 +49,5 @@ namespace GameJam
             }
 
         }
-
-        public override string ToString()
-        {
-            return "Lumberjack";
-        }
     }
 }

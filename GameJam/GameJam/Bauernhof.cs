@@ -32,11 +32,6 @@ namespace GameJam
             
         }
 
-        public override string ToString()
-        {
-            return "Bauernhof";
-        }
-
         public override void Update(GameTime gTime)
         {
             auslastung = (float)currentWorkers / (float)maxWorkers;

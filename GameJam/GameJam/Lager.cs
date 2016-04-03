@@ -83,19 +83,32 @@ namespace GameJam
             if (timer > kiUpdateTime)
             {
                 timer = 0;
-                if (buildings.Count < maxBuildings)
-                    for (int i = 0; i < ressourceRef.Count; i++)
+                for (int i = 0; i < ressourceRef.Count; i++)
+                {
+                    if (!ressourceRef[i].name.Equals("None"))
                     {
-                        if (!ressourceRef[i].name.Equals("None"))
+                        Building chooseBuilding = ChooseRessourceBuilding(ressourceRef[i].name);
+                        if (buildings.Find(item => item.name.Equals(chooseBuilding.name)) == null)
                         {
-                            Building chooseBuilding = ChooseRessourceBuilding(ressourceRef[i].name);
-                            if (buildings.Find(item => item.name.Equals(chooseBuilding.name)) == null)
-                            {
-                                buildings.Add(ChooseRessourceBuilding(ressourceRef[i].name));
-                                break;
-                            }
+                            KiTask task = new KiTask(ressourceRef[i].name, 1);
+                            KiTask checkTask = kiList.Find(item => item.task.Equals(task.task));
+                            if (checkTask == null)
+                                kiList.Add(task);
+                            else
+                                checkTask.AddValue(1);
+
                         }
                     }
+                }
+                if (buildings.Count < maxBuildings)
+                {
+                    for(int i = 0; i < kiList.Count; ++i)
+                    {
+                        Building ToBuild = ChooseRessourceBuilding(kiList[i].task);
+                        if (ToBuild != null)
+                            buildings.Add(ToBuild);
+                    }
+                }
             }
         }
 
