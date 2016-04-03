@@ -26,6 +26,7 @@ namespace GameJam
         public float auslastung { get; set; }
         public string name;
         public int status;
+        public abstract void lvlUp();
         public override string ToString()
         {
             return name + " LvL" + entwicklungsStufe + ": " + currentWorkers + "/" + maxWorkers;
@@ -37,8 +38,7 @@ namespace GameJam
             currentExp += zuwachsExp * auslastung * gTime.Ellapsed.Milliseconds;
             if (currentExp > maxExp)
             {
-                ++entwicklungsStufe;
-                currentExp = 0;
+                lvlUp();
             }
         }
         public void BindingWorker(int Workers)

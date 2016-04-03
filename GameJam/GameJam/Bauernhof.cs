@@ -17,17 +17,17 @@ namespace GameJam
         {
             currentExp = 0;
             maxExp = 1000;
-            zuwachsExp = 0.1f;
+            zuwachsExp = 0.01f;
             kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();
             production.Add("Food");
             refRessources = _refRessources;
-            abbaugeschwindigkeit = 0.001f;
+            abbaugeschwindigkeit = 0.02f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
-            maxWorkers = 25;
+            maxWorkers = 80;
             auslastung = 0;
             name = "BauernHof";
         }
@@ -48,6 +48,15 @@ namespace GameJam
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                 }
             }
+        }
+
+        public override void lvlUp()
+        {
+            ++entwicklungsStufe;
+            maxWorkers += 30;
+            abbaugeschwindigkeit += 0.005f;
+            currentExp = 0;
+            maxExp += 1000;
         }
     }
 }

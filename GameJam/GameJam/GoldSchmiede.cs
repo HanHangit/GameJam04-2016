@@ -18,7 +18,7 @@ namespace GameJam
         public GoldSchmiede(List<Ressource> _ressources, List<Produkte> _produkte, List<KiTask> _kiList)
         {
             currentExp = 0;
-            maxExp = 1000;
+            maxExp = 3000;
             zuwachsExp = 0.1f;
             kiList = _kiList;
             production = new List<string>();
@@ -30,11 +30,11 @@ namespace GameJam
                 amountRessources[i] = new List<float>();
             }
             neededRessources[0].Add("Kohle");
-            amountRessources[0].Add(0.003f);
+            amountRessources[0].Add(0.007f);
             neededRessources[0].Add("Gold");
-            amountRessources[0].Add(0.002f);
+            amountRessources[0].Add(0.005f);
             production.Add("Schmuck");
-            produktionsGeschwindigkeit = 0.001f;
+            produktionsGeschwindigkeit = 0.0005f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
@@ -88,6 +88,15 @@ namespace GameJam
                     }
                 }
             }
+        }
+
+        public override void lvlUp()
+        {
+            entwicklungsStufe++;
+            maxWorkers += 10;
+            maxExp += 1000;
+            currentExp = 0;
+            produktionsGeschwindigkeit += 0.0003f;
         }
     }
 }

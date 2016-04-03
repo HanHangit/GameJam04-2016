@@ -17,18 +17,18 @@ namespace GameJam
         public Fischer(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources, List<KiTask> _kiList)
         {
             currentExp = 0;
-            maxExp = 1000;
+            maxExp = 1500;
             zuwachsExp = 0.1f;
             kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();
             production.Add("Fische");
             refRessources = _refRessources;
-            abbaugeschwindigkeit = 0.001f;
+            abbaugeschwindigkeit = 0.007f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
-            maxWorkers = 25;
+            maxWorkers = 10;
             auslastung = 0;
             name = "Fischer";
         }
@@ -50,6 +50,15 @@ namespace GameJam
                     ressources.Find(item => item.name.Equals(production[i])).Add(menge);
                 }
             }
+        }
+
+        public override void lvlUp()
+        {
+            entwicklungsStufe++;
+            maxWorkers += 5;
+            abbaugeschwindigkeit += 0.001f;
+            currentExp = 0;
+            maxExp += 200;
         }
     }
 }

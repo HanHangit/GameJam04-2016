@@ -17,7 +17,7 @@ namespace GameJam
         public WoodCutter(List<Ressource> _ressources, List<Produkte> _produkte, List<KiTask> _kiList)
         {
             currentExp = 0;
-            maxExp = 1000;
+            maxExp = 1800;
             zuwachsExp = 0.1f;
             production = new List<string>();
             neededRessources = new List<string>[1];
@@ -28,13 +28,13 @@ namespace GameJam
                 amountRessources[i] = new List<float>();
             }
             neededRessources[0].Add("Holz");
-            amountRessources[0].Add(0.003f);
+            amountRessources[0].Add(0.004f);
             production.Add("Bretter");
-            produktionsGeschwindigkeit = 0.001f;
+            produktionsGeschwindigkeit = 0.0008f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
-            maxWorkers = 25;
+            maxWorkers = 20;
             auslastung = 0;
             name = "WoodCutter";
         }
@@ -86,6 +86,15 @@ namespace GameJam
                     }
                 }
             }
+        }
+
+        public override void lvlUp()
+        {
+            entwicklungsStufe++;
+            maxWorkers += 10;
+            currentExp = 0;
+            maxExp += 600;
+            produktionsGeschwindigkeit += 0.003f;
         }
     }
 }
