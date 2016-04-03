@@ -12,7 +12,7 @@ namespace GameJam
     class Ressource
     {
         public string name { get; private set; }
-        float amount;
+        public float amount { get; private set; }
         static Random rnd = new Random();
 
         public Ressource(int type)

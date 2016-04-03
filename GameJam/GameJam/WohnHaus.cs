@@ -47,7 +47,7 @@ namespace GameJam
                 currentBewohner = maxBewohner;
                 if (zeitSeitHausVoll != null)
                 {
-                    Time zeitFürNeuesHaus = Time.FromSeconds(30);
+                    Time zeitFürNeuesHaus = Time.FromSeconds(10);
                     if(zeitSeitHausVoll.ElapsedTime >= zeitFürNeuesHaus)
                     {
                         status = 2;
