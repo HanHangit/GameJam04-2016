@@ -21,7 +21,10 @@ namespace GameJam
         public float auslastung { get; set; }
         public string name;
         public int status;
-        public abstract override string ToString();
+        public override string ToString()
+        {
+            return name + " LvL" + entwicklungsStufe + ": " + currentWorkers + "/" + maxWorkers;
+        }
         public abstract void Update(GameTime gTime);
         public abstract void Draw(RenderWindow window);
 
