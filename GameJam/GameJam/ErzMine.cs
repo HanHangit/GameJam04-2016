@@ -17,18 +17,18 @@ namespace GameJam
         public ErzMine(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources, List<KiTask> _kiList)
         {
             currentExp = 0;
-            maxExp = 1000;
+            maxExp = 1400;
             zuwachsExp = 0.1f;
             kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();
             production.Add("Eisenerz");
             refRessources = _refRessources;
-            abbaugeschwindigkeit = 0.001f;
+            abbaugeschwindigkeit = 0.003f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
-            maxWorkers = 25;
+            maxWorkers = 40;
             auslastung = 0;
             name = "ErzMine";
         }
@@ -68,6 +68,14 @@ namespace GameJam
                     checkTask.AddValue(0);
                 }
             }
+        }
+
+        public override void lvlUp()
+        {
+            entwicklungsStufe++;
+            maxWorkers += 20;
+            currentExp = 0;
+            abbaugeschwindigkeit += 0.002f;
         }
     }
 }

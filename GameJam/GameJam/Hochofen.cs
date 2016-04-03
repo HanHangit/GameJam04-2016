@@ -17,7 +17,7 @@ namespace GameJam
         public Hochofen(List<Ressource> _ressources, List<Produkte> _produkte, List<KiTask> _kiList)
         {
             currentExp = 0;
-            maxExp = 1000;
+            maxExp = 1700;
             zuwachsExp = 0.1f;
             kiList = _kiList;
             production = new List<string>();
@@ -29,15 +29,15 @@ namespace GameJam
                 amountRessources[i] = new List<float>();
             }
             neededRessources[0].Add("Kohle");
-            amountRessources[0].Add(0.003f);
+            amountRessources[0].Add(0.008f);
             neededRessources[0].Add("Eisenerz");
-            amountRessources[0].Add(0.002f);
+            amountRessources[0].Add(0.006f);
             production.Add("Eisen");
             produktionsGeschwindigkeit = 0.001f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;
-            maxWorkers = 25;
+            maxWorkers = 36;
             auslastung = 0;
             name = "HochOfen";
         }
@@ -89,6 +89,15 @@ namespace GameJam
                     }
                 }
             }
+        }
+
+        public override void lvlUp()
+        {
+            entwicklungsStufe++;
+            maxWorkers += 14;
+            currentExp = 0;
+            maxExp += 500;
+            produktionsGeschwindigkeit += 0.001f;
         }
     }
 }
