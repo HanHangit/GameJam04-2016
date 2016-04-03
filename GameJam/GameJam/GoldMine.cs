@@ -25,6 +25,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "GoldMine";
         }
         public override void Draw(RenderWindow window)
         {
@@ -33,7 +34,7 @@ namespace GameJam
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "GoldMine";
         }
 
         public override void Update(GameTime gTime)

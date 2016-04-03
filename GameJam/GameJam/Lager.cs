@@ -16,15 +16,19 @@ namespace GameJam
         List<Ressource> ressources;
         List<Produkte> produkte;
         List<Building> buildings;
+        List<KiTask> kiList;
         float kiUpdateTime;
         float timer;
         int radius;
+        int maxBuildings;
         public int workers { get; set; }
         Vector2i position;
 
-        public Lager(Vector2i pos, int _radius, List<Ressource> _ressources, List<Produkte> _produkte)
+        public Lager(Vector2i pos, int _radius, List<Ressource> _ressources, List<Produkte> _produkte, List<KiTask> _kiList)
         {
-            kiUpdateTime = 20;
+            kiList = _kiList;
+            kiUpdateTime = 5000;
+            timer = 0;
             position = pos;
             ressources = new List<Ressource>();
             produkte = new List<Produkte>();
@@ -34,11 +38,7 @@ namespace GameJam
             ressourceRef = new List<Ressource>();
             buildings = new List<Building>();
             CollectRessourceRef();
-            //buildings.Add(new ErzMine(ressources, produkte, ressourceRef));
-            //buildings.Add(new KohleMine(ressources, produkte, ressourceRef));
-            buildings.Add(new Hochofen(ressources, produkte, ressourceRef));
-            buildings.Add(new GoldSchmiede(ressources, produkte, ressourceRef));
-            buildings.Add(new WoodCutter(ressources, produkte, ressourceRef));
+            maxBuildings = 1;
         }
 
         void CollectRessourceRef()
@@ -82,20 +82,33 @@ namespace GameJam
         {
             if (timer > kiUpdateTime)
             {
-
+                timer = 0;
+                if (buildings.Count < maxBuildings)
+                    for (int i = 0; i < ressourceRef.Count; i++)
+                    {
+                        if (!ressourceRef[i].name.Equals("None"))
+                        {
+                            Building chooseBuilding = ChooseRessourceBuilding(ressourceRef[i].name);
+                            if (buildings.Find(item => item.name.Equals(chooseBuilding.name)) == null)
+                            {
+                                buildings.Add(ChooseRessourceBuilding(ressourceRef[i].name));
+                                break;
+                            }
+                        }
+                    }
             }
         }
 
-        Building ChooseBuilding(int index)
+        Building ChooseRessourceBuilding(string name)
         {
-            switch (index)
+            switch (name)
             {
-                case 1: return new Lumberjack(ressources, produkte, ressourceRef);
-                case 2: return new Bauernhof(ressources, produkte, ressourceRef);
-                case 3: return new ErzMine(ressources, produkte, ressourceRef);
-                case 4: return new KohleMine(ressources, produkte, ressourceRef);
-                case 5: return new Fischer(ressources, produkte, ressourceRef);
-                case 6: return new GoldMine(ressources, produkte, ressourceRef);
+                case "Holz": return new Lumberjack(ressources, produkte, ressourceRef);
+                case "Food": return new Bauernhof(ressources, produkte, ressourceRef);
+                case "Eisenerz": return new ErzMine(ressources, produkte, ressourceRef);
+                case "Kohle": return new KohleMine(ressources, produkte, ressourceRef);
+                case "Fische": return new Fischer(ressources, produkte, ressourceRef);
+                case "Gold": return new GoldMine(ressources, produkte, ressourceRef);
                 default:
                     return null;
             }

@@ -26,6 +26,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "Fischer";
         }
 
         public override void Draw(RenderWindow window)
@@ -35,7 +36,7 @@ namespace GameJam
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "Fischer";
         }
 
         public override void Update(GameTime gTime)

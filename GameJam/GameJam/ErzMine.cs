@@ -26,6 +26,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "ErzMine";
         }
 
 
@@ -36,7 +37,7 @@ namespace GameJam
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "ErzMine";
         }
 
         public override void Update(GameTime gTime)

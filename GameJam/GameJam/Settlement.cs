@@ -19,6 +19,8 @@ namespace GameJam
         Lager lager;
         public List<Ressource> ressources { get; private set; }
         public List<Produkte> produkte { get; private set; }
+        public List<KiTask> kiList;
+
 
         public int gebäudeAnzahl {  get; private set; }
         int ausbreitung;
@@ -66,7 +68,7 @@ namespace GameJam
         {
             InitializeResPro();
             rathaus = new Rathaus(newBev,ressources,produkte);
-            lager = new Lager(realPosition, 10, ressources, produkte);
+            lager = new Lager(realPosition, 10, ressources, produkte,kiList);
 
             ausbreitung = 0;
             backgroundPH = new Sprite(new Texture(new Image((uint)(sprite.TextureRect.Width + (int)(ausbreitung * 2)), (uint)(sprite.TextureRect.Height + (int)(ausbreitung * 2)), Color.Magenta)));
@@ -75,7 +77,7 @@ namespace GameJam
 
         void InitializeResPro()
         {
-
+            kiList = new List<KiTask>();
             ressources = new List<Ressource>();
             produkte = new List<Produkte>();
             for (int i = 0; i < MapSettings.ressourcesName.Length; ++i)

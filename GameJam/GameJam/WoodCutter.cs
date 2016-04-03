@@ -33,6 +33,7 @@ namespace GameJam
             entwicklungsStufe = 1;
             maxWorkers = 25;
             auslastung = 0;
+            name = "WoodCutter";
         }
 
 
@@ -43,7 +44,7 @@ namespace GameJam
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return "WoodCutter";
         }
 
         public override void Update(GameTime gTime)
