@@ -14,7 +14,7 @@ namespace GameJam
         List<float>[] amountRessources;
         List<string> production;
 
-        public Hochofen(List<Ressource> _ressources, List<Produkte> _produkte, List<Ressource> _refRessources)
+        public Hochofen(List<Ressource> _ressources, List<Produkte> _produkte)
         {
             production = new List<string>();
             neededRessources = new List<string>[1];

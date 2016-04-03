@@ -38,7 +38,7 @@ namespace GameJam
 
         public override string ToString()
         {
-            return name + ": " + amount;
+            return name + ": " + (int)amount;
         }
 
         public void Add(float menge)

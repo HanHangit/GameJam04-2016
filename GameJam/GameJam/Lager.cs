@@ -106,9 +106,24 @@ namespace GameJam
                     {
                         Building ToBuild = ChooseRessourceBuilding(kiList[i].task);
                         if (ToBuild != null)
+                        {
                             buildings.Add(ToBuild);
+                            break;
+                        }
                     }
                 }
+            }
+        }
+
+        Building ChooseProdukteBuilding(string name)
+        {
+            switch (name)
+            {
+                case "Eisen":   return new Hochofen(ressources, produkte);
+                case "Bretter": return new WoodCutter(ressources, produkte);
+                case "Schmuck": return new GoldSchmiede(ressources, produkte);
+                default:
+                    return null;
             }
         }
 
