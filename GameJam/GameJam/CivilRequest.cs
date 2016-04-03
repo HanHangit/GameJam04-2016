@@ -14,6 +14,8 @@ namespace GameJam
         public int requestTyp { get; private set; } // 0 to upgrade; 1 to build new;
         public int requestPriority;
 
+        private String[] newBuildingTypes = {"Wohnhaus"};
+
         // new BuildingRequest
         public CivilRequest(Building _requestingBuilding, Building _requestedBuilding, int requestPriority)
         {
@@ -29,6 +31,20 @@ namespace GameJam
 
         void findRessourcesNeeded(Building building)
         {
+            
+            if(this.requestTyp == 1)
+            {
+                int numberOfString = -1;
+                for(int i = 0; i < newBuildingTypes.Length; i++)
+                {
+                    if(newBuildingTypes[i] == building.name)
+                    {
+                        numberOfString = i;
+                        break;
+                    }
+                }
+                
+            }
             
         }
 

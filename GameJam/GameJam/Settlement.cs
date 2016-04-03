@@ -130,5 +130,10 @@ namespace GameJam
             }
             return false;
         }
+
+        public List<Building> getLagerGebäudeList()
+        {
+            return lager.buildings;
+        }
     }
 }

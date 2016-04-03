@@ -15,7 +15,7 @@ namespace GameJam
         List<Ressource> ressourceRef;
         List<Ressource> ressources;
         List<Produkte> produkte;
-        List<Building> buildings;
+        public List<Building> buildings { get; private set; }
         List<KiTask> kiList;
         float kiUpdateTime;
         float timer;
