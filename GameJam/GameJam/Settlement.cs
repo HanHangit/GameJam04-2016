@@ -81,7 +81,7 @@ namespace GameJam
             ressources = new List<Ressource>();
             produkte = new List<Produkte>();
             for (int i = 0; i < MapSettings.ressourcesName.Length; ++i)
-                ressources.Add(new Ressource(i));
+                ressources.Add(new Ressource(MapSettings.ressourcesName[i],100));
             for (int i = 0; i < ProduktSettings.produktName.Length; ++i)
                 produkte.Add(new Produkte(ProduktSettings.produktName[i], ProduktSettings.produktCost[i]));
         }
