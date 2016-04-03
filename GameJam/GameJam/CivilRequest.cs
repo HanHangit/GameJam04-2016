@@ -45,7 +45,11 @@ namespace GameJam
                     }
                 }
                 // switch(case) changes 
-
+                switch(numberOfString)
+                {
+                    //case 0:  BauStoffe.Add(new Ressource()); break;
+                    default: throw new Exception("Building doesnt Exist in newBuildintTypes"); 
+                }
                 
             }
             
