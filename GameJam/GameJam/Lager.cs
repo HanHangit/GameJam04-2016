@@ -34,9 +34,11 @@ namespace GameJam
             ressourceRef = new List<Ressource>();
             buildings = new List<Building>();
             CollectRessourceRef();
-            buildings.Add(new ErzMine(ressources, produkte, ressourceRef));
-            buildings.Add(new KohleMine(ressources, produkte, ressourceRef));
+            //buildings.Add(new ErzMine(ressources, produkte, ressourceRef));
+            //buildings.Add(new KohleMine(ressources, produkte, ressourceRef));
             buildings.Add(new Hochofen(ressources, produkte, ressourceRef));
+            buildings.Add(new GoldSchmiede(ressources, produkte, ressourceRef));
+            buildings.Add(new WoodCutter(ressources, produkte, ressourceRef));
         }
 
         void CollectRessourceRef()
