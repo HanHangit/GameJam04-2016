@@ -17,7 +17,7 @@ namespace GameJam
         {
             currentExp = 0;
             maxExp = 1000;
-            zuwachsExp = 0.01f;
+            zuwachsExp = 0.1f;
             kiList = _kiList;
             production = new List<string>();
             refRessources = new List<Ressource>();

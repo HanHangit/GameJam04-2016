@@ -30,7 +30,7 @@ namespace GameJam
             neededRessources[0].Add("Holz");
             amountRessources[0].Add(0.004f);
             production.Add("Bretter");
-            produktionsGeschwindigkeit = 0.0008f;
+            produktionsGeschwindigkeit = 0.0004f;
             ressources = _ressources;
             produkte = _produkte;
             entwicklungsStufe = 1;

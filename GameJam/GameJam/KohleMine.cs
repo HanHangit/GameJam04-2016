@@ -75,7 +75,7 @@ namespace GameJam
                     }
                     else
                     {
-                        checkTask.AddValue(0);
+                        checkTask2.AddValue(0);
                     }
             }
         }
